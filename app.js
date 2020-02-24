@@ -61,14 +61,62 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const mongoose = require('mongoose');
 
-mongoose.connect(url);
-
-
-// Connection URL
-const uri = 'mongodb://localhost:27017';
 const url = "mongodb+srv://test_user:testuser123@cluster0-ppro3.mongodb.net/test?retryWrites=true&w=majority";
 
 
+mongoose.connect(url, {useNewUrlParser: true});
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
+// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+Person.findOne({ 'name.last': 'Ghost' }, 'name occupation', function (err, person) {
+  if (err) return handleError(err);
+  // Prints "Space Ghost is a talk show host".
+  console.log('%s %s is a %s.', person.name.first, person.name.last,
+    person.occupation);
+});
+
+var jsonvar= {
+  "_id" : ObjectId("5e3f2e85053f6f2fb1ff74a5"),
+  "CodigoBodega" : 1.0,
+  "NombreCorto" : "aaa",
+  "Alias" : "aaa",
+  "Ubicacion" : "SJ",
+  "UnidadMedida" : "cm",
+  "TipoBodega" : "reforzada",
+  "EspacioBodega" : "pequeña"
+};
+
+/*
+var userSchemaJSON= {
+  email:String, 
+  password:String
+};
+
+var user_schema= new userSchemaJSON(userSchemaJSON);
+
+
+var User= mongoose.model("User", user_schema);
+
+var user= new User({email:"rsft@gmail.com", password:"1234"});
+User.find((err, doc)=>{
+  console.log(doc);
+});*/
+
+
+//mongoose.connect(url);
+
+
+// Connection URL
+/*
+const uri = 'mongodb://localhost:27017';
+const url = "mongodb+srv://test_user:testuser123@cluster0-ppro3.mongodb.net/test?retryWrites=true&w=majority";
+*/
+
+
+
+/*
 // Database Name
 const dbName = 'TRAMSA';
 
@@ -83,7 +131,6 @@ MongoClient.connect(url, function (err, client) {
 
   client.close();
 });
-
 
 function Select(collection) {
   MongoClient.connect(url, function (err, client) {
@@ -103,13 +150,8 @@ function Select(collection) {
   });
 }
 
-
-
-
-
-
 const camiones=Select("Camiones");
 
-console.log(camiones.databaseName);
+//console.log(camiones.databaseName);
 Select("Bodegas");
-Select("Camiones");
+Select("Camiones");*/
