@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 var productosSchema = new mongoose.Schema({
     CodigoProducto: {
-        type:int, 
+        type:String, 
         required:true
     },
     CódigoMateriaPrima: {
