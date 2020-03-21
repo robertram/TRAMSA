@@ -1,15 +1,16 @@
 const mongoose= require('mongoose');
 const express=require('express');
-require('dotenv').config();
-const bodyParser= require('body-parser');
 const app= express();
+const bodyParser= require('body-parser');
+require('dotenv').config();
 
+app.use(bodyParser.json());
 
-app.use(bodyParser.json);
+/*const productosRoute= require('./routes/productos');
+app.use('/productos', productosRoute);*/
 
-const productosRoute= require('./routes/productos');
-app.use('/productos', productosRoute);
-
+const postsRoute= require('./routes/posts');
+app.use('/posts', postsRoute);
 
 mongoose.connect(process.env.DB_CONNECTION, 
   {useNewUrlParser:true}, 
@@ -19,6 +20,8 @@ mongoose.connect(process.env.DB_CONNECTION,
 app.get('/', (req,res)=>{
   res.send('index')
 });
+
+
 
 app.listen(3000);
 
