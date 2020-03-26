@@ -1,0 +1,558 @@
+const UsuarioSchema = new Schema({
+    Nombre:{
+        type:String,
+        require:true
+    },
+    Usuario:{
+        type:String,
+        require:true,
+    },
+    Contraseña:{
+        type:String,
+        require:true
+    }, 
+    Email:{
+        type:String,
+        require:true
+    },
+    Rol:{
+        type:Number,
+        require:true
+    },  
+    Estado:{
+        type:String,
+        require:true
+    }
+},{timestamps:true})
+
+const MateriaPrimaSchema = new Schema({
+    CodigoMateriaPrima:{
+        type:Number,
+        require:true
+    },
+    Nombre:{
+        type:String,
+        require:true,
+    },
+    CantidadExistente:{
+        type:Number,
+        require:true
+    }, 
+    UnidadDeMedida:{
+        type:Arrays,
+        require:true
+    }
+},{timestamps:true})
+
+const TipoMateriaPrimaSchema = new Schema({
+    CodigoTipoMateriaPrima:{
+        type:Number,
+        require:true
+    },
+    Descripcion:{
+        type:String,
+        require:true,
+    }
+},{timestamps:true})
+
+const ProductoSchema = new Schema({
+    CodigoMateriaPrima:{
+        type:Number,
+        require:true
+    },
+    Descripcion:{
+        type:String,
+        require:true,
+    },
+    PuntosReOrden:{
+        type:Arrays,
+        require:true
+    }, 
+    UnidadDeMedida:{
+        type:Arrays,
+        require:true
+    }, 
+    CodigoProducto:{
+        type:Number,
+        require:true
+    },
+    CodigoMateriaPrima:{
+        type:Number,
+        require:true,
+    }
+},{timestamps:true})
+
+const ProveedorSchema = new Schema({
+    CodigoProveedor:{
+        type:Number,
+        require:true
+    },
+    Cedula:{
+        type:String,
+        require:true,
+    }, 
+    Nombre:{
+        type:String,
+        require:true
+    },
+    Telefonos:{
+        type:Arrays,
+        require:true,
+    }, 
+    Correo:{
+        type:String,
+        require:true
+    },
+    Contacto:{
+        type:String,
+        require:true,
+    }, 
+    TelefonoContacto:{
+        type:String,
+        require:true
+    },
+    Direccion:{
+        type:String,
+        require:true,
+    }
+},{timestamps:true})
+
+
+const ClienteSchema = new Schema({
+    CodigoIdentificacion:{
+        type:Number,
+        require:true
+    },
+    FechaIngreso:{
+        type:Date,
+        require:true,
+    },
+    DocumentoDeIdentidad:{
+        type:Arrays,
+        require:true
+    }, 
+    PrimerApellido:{
+        type:String,
+        require:true
+    }, 
+    SegundoApellido:{
+        type:String,
+        require:true
+    }, 
+    Nombre:{
+        type:String,
+        require:true
+    }, 
+    Estado:{
+        type:String,
+        require:true
+    }, 
+    Telefonos:{
+        type:Arrays,
+        require:true
+    }, 
+    CorreoElectronico:{
+        type:String,
+        require:true
+    }, 
+    Direccion:{
+        type:String,
+        require:true
+    }, 
+    Consecutivo:{
+        type:String,
+        require:true
+    }
+},{timestamps:true})
+
+const ProcesoMaestroSchema = new Schema({
+    OrdenPedido:{
+        type:Number,
+        require:true
+    },
+    FechaOrden:{
+        type:Date,
+        require:true,
+    },
+    Proveedor:{
+        type:Number,
+        require:true
+    }, 
+    Comprobante:{
+        type:Arrays,
+        require:true
+    }
+},{timestamps:true})
+    
+const ProcesoDetalleSchema = new Schema({
+    CodigoOrdenPedido:{
+        type:Number,
+        require:true
+    },
+    CodigoMateriaPrima:{
+        type:Number,
+        require:true,
+    },
+    NombreMateriaPrima:{
+        type:String,
+        require:true
+    }, 
+    CantidadAPedir:{
+        type:Number,
+        require:true
+    }, 
+    Estado:{
+        type:Arrays,
+        require:true
+    }
+},{timestamps:true})
+
+    
+const ProduccionEnLoteSchema = new Schema({
+    NumeroProduccion:{
+        type:Number,
+        require:true
+    },
+    FechaProduccion:{
+        type:Date,
+        require:true,
+    },
+    CodigoProducto:{
+        type:Number,
+        require:true
+    }, 
+    Producto:{
+        type:String,
+        require:true
+    }, 
+    Bodega:{
+        type:Number,
+        require:true
+    }, 
+    Cantidad:{
+        type:Number,
+        require:true
+    }, 
+    TiempoProduccion:{
+        type:String,
+        require:true
+    }
+},{timestamps:true})
+    
+    
+const PuntoDeVentaSchema = new Schema({
+    NumeroFactura:{
+        type:Number,
+        require:true
+    },
+    Fecha:{
+        type:Date,
+        require:true,
+    },
+    Cliente:{
+        type:Number,
+        require:true
+    }, 
+    Producto:{
+        type:Number,
+        require:true
+    }, 
+    CantidadProducto:{
+        type:Number,
+        require:true
+    }, 
+    Descuento:{
+        type:Double,
+        require:true
+    }, 
+    Impuesto:{
+        type:Double,
+        require:true
+    }, 
+    Total:{
+        type:Double,
+        require:true
+    }
+},{timestamps:true})
+
+const CierreDeCajaSchema = new Schema({
+    MontoDeApertura:{
+        type:Number,
+        require:true
+    },
+    IngresoPorVentasEnEfectivo:{
+        type:Number,
+        require:true,
+    },
+    IngresoDeVentasPorTarjetas:{
+        type:Number,
+        require:true
+    }
+},{timestamps:true})    
+
+const CompraTarjetaCreditoDebidoSchema = new Schema({
+    Num_Tarjeta:{
+        type:String,
+        require:true
+    },
+    Mes_Exp:{
+        type:String,
+        require:true,
+    },
+    Year_Exp:{
+        type:String,
+        require:true
+    }, 
+    CVV:{
+        type:String,
+        require:true
+    }, 
+    Monto:{
+        type:Double,
+        require:true
+    }, 
+    Tipo:{
+        type:Arrays,
+        require:true
+    }
+},{timestamps:true})  
+
+const EventosSchema = new Schema({
+    Codigo:{
+        type:Number,
+        require:true
+    },
+    Descripcion:{
+        type:String,
+        require:true,
+    }
+},{timestamps:true})  
+
+const RolesSchema = new Schema({
+    Codigo:{
+        type:Number,
+        require:true
+    },
+    Nombre:{
+        type:String,
+        require:true,
+    }, 
+    RolesDisponibles:{
+        type:Arrays,
+        require:true
+    },
+    RolesAsignados:{
+        type:Arrays,
+        require:true,
+    }
+},{timestamps:true})  
+
+
+const UsuarioSchema = new Schema({
+    Email:{
+        type:String,
+        require:true
+    },
+    User:{
+        type:String,
+        require:true,
+    }, 
+    Nombre:{
+        type:String,
+        require:true
+    },
+    Rol:{
+        type:Number,
+        require:true,
+    }, 
+    Password:{
+        type:String,
+        require:true
+    },
+    Estado:{
+        type:String,
+        require:true,
+    }
+},{timestamps:true})  
+
+const BitacoraSchema = new Schema({
+    Usuario:{
+        type:Number,
+        require:true
+    },
+    Fecha:{
+        type:Date,
+        require:true,
+    }, 
+    CodigoRegistro:{
+        type:Number,
+        require:true
+    },
+    DescripcionAccion:{
+        type:Number,
+        require:true,
+    }
+},{timestamps:true}) 
+
+
+const PedidosPendientesSchema = new Schema({
+    NumeroPedido:{
+        type:Number,
+        require:true
+    },
+    FechaPedido:{
+        type:Date,
+        require:true,
+    }, 
+    Proveedor:{
+        type:Number,
+        require:true
+    },
+    Camion:{
+        type:Number,
+        require:true,
+    }, 
+    MontoDelPedido:{
+        type:Double,
+        require:true,
+    }
+},{timestamps:true})  
+
+const VentasSchema = new Schema({
+    NumFactura:{
+        type:Number,
+        require:true
+    },
+    Fecha:{
+        type:Date,
+        require:true,
+    }, 
+    MontoVenta:{
+        type:Double,
+        require:true
+    }
+},{timestamps:true})  
+
+const PaseDineroSchema = new Schema({
+    Fecha:{
+        type:Date,
+        require:true
+    },
+    Indicador:{
+        type:String,
+        require:true,
+    }, 
+    Monto:{
+        type:Double,
+        require:true
+    }
+},{timestamps:true})  
+
+const ParametrosGeneralesSchema = new Schema({
+    NombreCompañía:{
+        type:String,
+        require:true
+    },
+    Teléfono:{
+        type:String,
+        require:true,
+    }, 
+    CédulaJurídica:{
+        type:String,
+        require:true
+    },
+    MensajeSaludo:{
+        type:String,
+        require:true,
+    }, 
+    DirecciónEstablecimiento:{
+        type:String,
+        require:true
+    }
+},{timestamps:true})  
+    
+const ConsecutivosSchema = new Schema({
+    Prefijo:{
+        type:String,
+        require:true
+    },
+    ValorConsecutivo:{
+        type:String,
+        require:true,
+    }, 
+    Descripción:{
+        type:String,
+        require:true
+    }
+},{timestamps:true}) 
+
+const BodegaSchema = new Schema({
+    CódigoBodega:{
+        type:Number,
+        require:true
+    },
+    Nombre:{
+        type:String,
+        require:true,
+    }, 
+    NombreCorto:{
+        type:String,
+        require:true
+    }, 
+    Alias:{
+        type:String,
+        require:true
+    },
+    Ubicación:{
+        type:String,
+        require:true,
+    }, 
+    UnidadMedida:{
+        type:String,
+        require:true
+    }, 
+    TipoBodega:{
+        type:String,
+        require:true
+    },
+    EspacioBodega:{
+        type:Number,
+        require:true,
+    }, 
+    Consecutivo:{
+        type:String,
+        require:true
+    }
+},{timestamps:true})   
+
+const CamionesSchema = new Schema({
+    CódigoCamión:{
+        type:Number,
+        require:true
+    },
+    Descripción:{
+        type:String,
+        require:true,
+    }, 
+    NombreCorto:{
+        type:String,
+        require:true
+    }, 
+    Marca:{
+        type:String,
+        require:true
+    },
+    Año:{
+        type:Number,
+        require:true,
+    }, 
+    Placa:{
+        type:String,
+        require:true
+    }, 
+    Consecutivo:{
+        type:String,
+        require:true
+    }
+},{timestamps:true}) 
+

@@ -12,4 +12,8 @@ indexCtrl.renderLibros=(req,res)=>{
     res.render('libros');
 }
 
+indexCtrl.renderError=(req,res)=>{
+    res.render('error');
+}
+
 module.exports = indexCtrl;
