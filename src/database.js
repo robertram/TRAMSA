@@ -8,11 +8,11 @@ const MONGODB_URL =`mongodb://${LIBROS_HOST}/${LIBROS_DATABASE}`;
 
 
 mongoose.connect(MONGODB_URL,{
+    useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(db=>console.log('Base de datos esta conectada', MONGODB_URL))
 .catch(err=>{
     console.log('direccion --',MONGODB_URL)
     console.log('Mensaje de error: ',err);
-
 })
