@@ -10,20 +10,16 @@ const ProductoSchema = new Schema({
         require:true,
     },
     PuntosReOrden:{
-        type:Arrays,
+        type:String, //Arrays
         require:true
     }, 
     UnidadDeMedida:{
-        type:Arrays,
+        type:String, //Arrays
         require:true
     }, 
     CodigoProducto:{
         type:Number,
         require:true
-    },
-    CodigoMateriaPrima:{
-        type:Number,
-        require:true,
     }
 },{timestamps:true})
 
