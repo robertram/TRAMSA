@@ -7,13 +7,13 @@ const passport = require('passport');
 // Models
 const User = require('../models/User');
 
-router.get('/', (req, res) => {
+router.get('/users/signin', (req, res) => {
     res.render('users/signin')
 });
 
 router.post('/users/signin', passport.authenticate("local", {
     successRedirect: "/productos",
-    failureRedirect: "/users/signin",
+    failureRedirect: "/",
     failureFlash: true
 }));
 
@@ -93,9 +93,7 @@ router.post('/users/signup', async (req, res) => {
 router.get('/users/logout', (req, res) => {
     req.logout();
     req.flash("success_msg", "Sesión Cerrada");
-    res.redirect("/");
+    res.redirect("/users/signin");
 });
-
-
 
 module.exports = router;

@@ -57,7 +57,7 @@ router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
 
     if (errors.length > 0) {
         res.render("productos/new-producto", {
-            errors,
+            errors, //No se quita
             CodigoMateriaPrima,
             Descripcion,
             PuntosReOrden,
@@ -65,6 +65,9 @@ router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
             CodigoProducto
         });
     } else {
+        const cantidadProductos = await Producto.find().count();
+        console.log(cantidadProductos);
+
         const newProducto = new Producto({
             CodigoMateriaPrima,
             Descripcion,
