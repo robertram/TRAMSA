@@ -59,10 +59,12 @@ router.post('/bitacoras/new-bitacora', isAuthenticated, async (req, res) => {
     } else {
         const newBitacora = new Bitacora({
             Usuario,
-            Fecha,
             CodigoRegistro,
             DescripcionAccion
         });
+        var datetime = new Date();
+        newBitacora.Fecha = datetime;
+        console.log(datetime);
         //newProducto.user = req.user.id;
         await newBitacora.save();
         //req.flash("success_msg", "Producto Añadido");
@@ -71,20 +73,3 @@ router.post('/bitacoras/new-bitacora', isAuthenticated, async (req, res) => {
 });
 
 module.exports = router;
-
-/*Usuario:{
-    type:Number,
-    require:true
-},
-Fecha:{
-    type:Date,
-    require:true,
-}, 
-CodigoRegistro:{
-    type:Number,
-    require:true
-},
-DescripcionAccion:{
-    type:Number,
-    require:true,
-}*/

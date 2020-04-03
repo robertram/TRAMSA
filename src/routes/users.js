@@ -6,6 +6,9 @@ const passport = require('passport');
 
 // Models
 const User = require('../models/User');
+const {
+    isAuthenticated
+} = require('../helpers/auth');
 
 router.get('/users/signin', (req, res) => {
     res.render('users/signin')
