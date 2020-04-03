@@ -55,7 +55,10 @@ app.use(require('./routes/notes'));
 app.use(require('./routes/productos'));
 app.use(require('./routes/bitacoras'));
 app.use(require('./routes/camiones'));
-
+app.use(require('./routes/eventos'));
+app.use(require('./routes/materiaPrima'));
+app.use(require('./routes/consecutivos'));
+app.use(require('./routes/parametrosGenerales'));
 
 //Archivos publicos
 app.use(express.static(path.join(__dirname, 'public')))

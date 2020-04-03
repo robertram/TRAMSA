@@ -75,7 +75,7 @@ router.post('/camiones/new-camion', isAuthenticated, async (req, res) => {
             Consecutivo
         });
     } else {
-        const cantidadCamiones = await Camion.countDocuments();
+        const cantidadCamiones = await Camion.find().countDocuments();
         console.log(cantidadCamiones);
 
         const newCamion = new Camion({
@@ -84,19 +84,15 @@ router.post('/camiones/new-camion', isAuthenticated, async (req, res) => {
             NombreCorto,
             Marca,
             Año,
-            Placa,
-            Consecutivo
+            Placa
         });
         //newCamion.user = req.user.id;
+        newCamion.CodigoCamion = cantidadCamiones+1;
+        newCamion.Consecutivo = cantidadCamiones+1;
         await newCamion.save();
         //req.flash("success_msg", "Camion Añadido");
         res.redirect("/camiones");
     }
 });
-
-
-
-    
-
 
 module.exports = router;

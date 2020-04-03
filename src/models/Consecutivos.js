@@ -6,10 +6,10 @@ const ConsecutivosSchema = new Schema({
         require:true
     },
     ValorConsecutivo:{
-        type:String,
+        type:Number,
         require:true,
     }, 
-    Descripción:{
+    Descripcion:{
         type:String,
         require:true
     }

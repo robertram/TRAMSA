@@ -1,23 +1,23 @@
 const {Schema, model} = require('mongoose');
 
 const ParametrosGeneralesSchema = new Schema({
-    NombreCompañía:{
+    NombreCompania:{
         type:String,
         require:true
     },
-    Teléfono:{
-        type:String,
+    Telefono:{
+        type:Number,
         require:true,
     }, 
-    CédulaJurídica:{
-        type:String,
+    CedulaJuridica:{
+        type:Number,
         require:true
     },
     MensajeSaludo:{
         type:String,
         require:true,
     }, 
-    DirecciónEstablecimiento:{
+    DireccionEstablecimiento:{
         type:String,
         require:true
     }
