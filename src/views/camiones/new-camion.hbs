@@ -1,0 +1,110 @@
+<div class="containerInfo">
+    <main>
+        <div class="container" style="margin-top: 8%;">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-10">
+                    <h2 class="text">Camiones</h2>
+                    <form action="/camiones/new-camion" class="needs-validation" method="POST" novalidate>
+                        <div class="form-row" style="margin-top: 5%;">
+                            <div class="col-md-4 mb-3">
+                                <label for="codigoCamion">Código Camión</label>
+                                <input name="codigoCamion" type="text" class="form-control" id="codigoCamion" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="descripcionCamion">Descripción</label>
+                                <input name="descripcionCamion" type="text" class="form-control" id="descripcionCamion"
+                                    required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="NombreCortoCamion">Nombre Corto</label>
+                                <div class="input-group">
+                                    <input name="NombreCortoCamion" type="text" class="form-control"
+                                        id="NombreCortoCamion" aria-describedby="inputGroupPrepend" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="MarcaCamion">Marca</label>
+                                <input name="MarcaCamion" type="text" class="form-control" id="MarcaCamion" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="YearCamion">Año</label>
+                                <input name="YearCamion" type="text" class="form-control" id="YearCamion" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="PlacaCamion">Placa</label>
+                                <input name="PlacaCamion" type="text" class="form-control" id="PlacaCamion" required>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" type="submit">Agregar</button>
+                        </div>
+
+                        <table class="table" style="margin-top: 5%;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Código Camión</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Nombre Corto</th>
+                                    <th scope="col">Marca</th>
+                                    <th scope="col">Año</th>
+                                    <th scope="col">Placa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each Camiones}}
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>{{ this.codigoCamion}}</td>
+                                    <td>{{ this.descripcionCamion}}</td>
+                                    <td>{{ this.NombreCortoCamion}}</td>
+                                    <td>{{ this.MarcaCamion}}</td>
+                                    <td>{{ this.YearCamion}}</td>
+                                    <td>{{ this.PlacaCamion}}</td>
+                                    <td class="btn btn-warning button-form" type="submit">Modificar</td>
+                                    <td class="btn btn-danger button-form" type="submit">Eliminar</td>
+                                </tr>
+                                {{else}}
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="card mx-auto">
+                                <div class="card-body">
+                                    <h1>Hola {{user.name}}</h1>
+                                    <p clsss="lead">Aún no hay camiones registrados</p>
+                                    <a href="/camiones/add" class="btn btn-success btn-block">Registra Uno!</a>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </form>
+                    <script>
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+                        (function () {
+                            'use strict';
+                            window.addEventListener('load', function () {
+                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                var forms = document.getElementsByClassName('needs-validation');
+                                // Loop over them and prevent submission
+                                var validation = Array.prototype.filter.call(forms, function (form) {
+                                    form.addEventListener('submit', function (event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                                        form.classList.add('was-validated');
+                                    }, false);
+                                });
+                            }, false);
+                        })();
+                    </script>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</div>

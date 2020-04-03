@@ -1,11 +1,11 @@
 const {Schema, model} = require('mongoose');
 
 const CamionesSchema = new Schema({
-    CódigoCamión:{
+    CodigoCamion:{
         type:Number,
         require:true
     },
-    Descripción:{
+    Descripcion:{
         type:String,
         require:true,
     }, 

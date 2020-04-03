@@ -54,6 +54,7 @@ app.use(require('./routes/users'));
 app.use(require('./routes/notes'));
 app.use(require('./routes/productos'));
 app.use(require('./routes/bitacoras'));
+app.use(require('./routes/camiones'));
 
 
 //Archivos publicos
