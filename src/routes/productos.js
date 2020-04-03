@@ -22,10 +22,9 @@ router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
         CodigoMateriaPrima,
         Descripcion,
         PuntosReOrden,
-        UnidadDeMedida,
-        CodigoProducto
+        UnidadDeMedida
     } = req.body;
-    
+    const CodigoProducto= 1;
     const errors = [];
     //Chequeo si está vacío el textbox
     if (!CodigoMateriaPrima) {
@@ -65,16 +64,16 @@ router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
             CodigoProducto
         });
     } else {
-        const cantidadProductos = await Producto.find().count();
+        const cantidadProductos = await Producto.find().countDocuments();
         console.log(cantidadProductos);
 
         const newProducto = new Producto({
             CodigoMateriaPrima,
             Descripcion,
             PuntosReOrden,
-            UnidadDeMedida,
-            CodigoProducto
+            UnidadDeMedida
         });
+        newProducto.CodigoProducto= cantidadProductos+1;
         //newProducto.user = req.user.id;
         await newProducto.save();
         //req.flash("success_msg", "Producto Añadido");
