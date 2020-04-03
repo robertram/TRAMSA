@@ -73,6 +73,7 @@ body {
 
 .sidebar {
   background-color: #E9E2EF;
+  height: 150%;   
 }
 
 #navTramsa {
@@ -162,6 +163,14 @@ body {
   -webkit-box-align: center;
 }
 
+#alerta{
+  width: 50%;
+  margin: auto;
+}
+
+.logo {
+  width: 30%;
+}
 
 @media (min-width: 992px) {
   .wrapper .sideMenu {
