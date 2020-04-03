@@ -8,7 +8,7 @@ const {
     isAuthenticated
 } = require('../helpers/auth');
 
-router.get('/bitacora', isAuthenticated, async (req, res) => {
+router.get('/bitacoras', isAuthenticated, async (req, res) => {
     const bitacoras = await Bitacora.find().sort([
         ['updatedAt', 'descending']
     ]);
