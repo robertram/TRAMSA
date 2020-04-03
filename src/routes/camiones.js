@@ -63,12 +63,6 @@ router.post('/camiones/new-camion', isAuthenticated, async (req, res) => {
         });
     }
 
-    if (!Consecutivo) {
-        errors.push({
-            text: "Please Write a Consecutivo"
-        });
-    }
-
     if (errors.length > 0) {
         res.render("camiones/new-Camion", {
             errors, //No se quita
@@ -81,7 +75,7 @@ router.post('/camiones/new-camion', isAuthenticated, async (req, res) => {
             Consecutivo
         });
     } else {
-        const cantidadCamiones = await Camion.find().count();
+        const cantidadCamiones = await Camion.countDocuments();
         console.log(cantidadCamiones);
 
         const newCamion = new Camion({
