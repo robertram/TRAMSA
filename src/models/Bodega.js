@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose');
 
 const BodegaSchema = new Schema({
-    CódigoBodega:{
+    CodigoBodega:{
         type:Number,
         require:true
     },
@@ -17,7 +17,7 @@ const BodegaSchema = new Schema({
         type:String,
         require:true
     },
-    Ubicación:{
+    Ubicacion:{
         type:String,
         require:true,
     }, 
@@ -34,7 +34,7 @@ const BodegaSchema = new Schema({
         require:true,
     }, 
     Consecutivo:{
-        type:String,
+        type:Number,
         require:true
     }
 },{timestamps:true})   

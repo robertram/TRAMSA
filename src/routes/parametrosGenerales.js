@@ -3,7 +3,7 @@ const {
 } = require('express');
 const router = Router();
 
-const Parametro = require('../models/Producto');
+const Parametro = require('../models/Parametrosgenerales');
 const {
     isAuthenticated
 } = require('../helpers/auth');
@@ -78,6 +78,7 @@ router.post('/parametrosGenerales/new-parametroGeneral', isAuthenticated, async 
         newParametro.CodigoParametro= cantidadParametros+1;
         //newParametro.user = req.user.id;
         await newParametro.save();
+        console.log(newParametro.NombreCompania);
         //req.flash("success_msg", "Parametro Añadido");
         res.redirect("/parametros");
     }
