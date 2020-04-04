@@ -61,7 +61,7 @@ router.post('/users/signup', isAuthenticated, async (req, res) => {
 router.get('/users/logout', (req, res) => {
     req.logout();
     req.flash("success_msg", "Sesión Cerrada");
-    res.redirect("/users/signin");
+    res.redirect("/");
 });
 
 module.exports = router;
