@@ -3,9 +3,9 @@ const router = Router();
 //const { renderIndex, renderAcerca, renderLibros, renderError} =require('../controllers/index.controllers')
 
 
-/*router.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.render('index');
-});*/
+});
 
 router.get('/acercade', (req, res) => {
     res.render('acercade');

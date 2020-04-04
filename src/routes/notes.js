@@ -58,29 +58,36 @@ router.get('/notes', isAuthenticated, async (req, res) => {
     });
 });
 
-//Poner los datos en el editar
+//Render formulario
 router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {
     const note = await Note.findById(req.params.id);
-    res.render('notes/edit-note', {
+    /*if (note.user != req.user.id) {
+        req.flash("error_msg", "Not Authorized");
+        return res.redirect("/notes");
+    }*/
+    res.render("notes/edit-note", {
         note
     });
 });
-
-
-router.put('notes/edit-note/:id', isAuthenticated, async (req, res) => {
-    const { title, description } = req.body;
-  await Note.findOneAndUpdate(req.params.id, { title, description }, {new: true});
-  req.flash("success_msg", "Note Updated Successfully");
-  res.redirect("/notes");
-})
-
-router.delete('notes/delete/:id', isAuthenticated, async (req, res) => {
-    /*await Note.findByIdAndDelete(req.params.id);
+//Editar el formulario
+router.put('/notes/edit-note/:id', isAuthenticated, async (req, res) => {
+    const {
+        title,
+        description
+    } = req.body;
+    await Note.findByIdAndUpdate(req.params.id, {
+        title,
+        description
+    });
+    req.flash("success_msg", "Note Updated Successfully");
+    res.redirect("/notes");
+});
+//Eliminar
+router.delete('/notes/delete/:id', isAuthenticated, async (req, res) => {
+    await Note.findByIdAndDelete(req.params.id);
     req.flash("success_msg", "Note Deleted Successfully");
-        res.redirect("/notes");*/
-    console.log("id",req.params.id);
-    res.send('ok')
-})
+    res.redirect("/notes");
+});
 
 module.exports = router;
 
