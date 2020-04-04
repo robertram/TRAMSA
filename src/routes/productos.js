@@ -12,6 +12,7 @@ router.get('/productos', isAuthenticated, async(req, res) => {
     const productos = await Producto.find().sort([
         ['updatedAt', 'descending']
     ]);
+
     res.render('productos/new-producto', {
         productos
     });
@@ -65,7 +66,6 @@ router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
         });
     } else {
         const cantidadProductos = await Producto.find().countDocuments();
-        console.log(cantidadProductos);
 
         const newProducto = new Producto({
             CodigoMateriaPrima,
@@ -80,10 +80,5 @@ router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
         res.redirect("/productos");
     }
 });
-
-
-
-    
-
 
 module.exports = router;

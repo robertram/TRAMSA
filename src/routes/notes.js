@@ -84,5 +84,3 @@ router.delete('notes/delete/:id', isAuthenticated, async (req, res) => {
 
 module.exports = router;
 
-//Hola Robert esta es la prueba del pull
->>>>>>> c4bc4b29fc41a4a466777fbba3d1f36c368e6856

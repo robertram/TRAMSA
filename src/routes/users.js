@@ -16,82 +16,47 @@ router.get('/users/signin', (req, res) => {
 
 router.post('/users/signin', passport.authenticate("local", {
     successRedirect: "/productos",
-    failureRedirect: "/",
+    failureRedirect: "/users/signin",
     failureFlash: true
 }));
 
-router.get('/users/signup', (req, res) => {
+router.get('/users/signup', isAuthenticated, (req, res) => {
     res.render('users/signup')
 });
 
-router.post('/users/signup', async (req, res) => {
+router.post('/users/signup', isAuthenticated, async (req, res) => {
     let errors = [];
-    const {
-        name,
-        email,
-        password,
-        confirm_password
-    } = req.body;
-    if (name.length <= 0) {
-        errors.push({
-            text: 'Please insert your name'
-        })
-    }
-    /*Usar Express Validator*/
-    if (email.length <= 0) {
-        errors.push({
-            text: 'Please insert your email'
-        })
-    }
-    if (password.length <= 0) {
-        errors.push({
-            text: 'Please insert your password'
-        })
-    }
-    if (confirm_password.length <= 0) {
-        errors.push({
-            text: 'Please insert your confirmed password'
-        })
-    }
-
-    if (password != confirm_password) {
-        errors.push({
-            text: "Passwords do not match."
-        });
-    }
-    if (password.length < 4) {
-        errors.push({
-            text: "Passwords must be at least 4 characters."
-        });
-    }
-    if (errors.length > 0) {
-        res.render("users/signup", {
-            errors,
-            name,
-            email
-        });
+  const { name, email, password, confirm_password } = req.body;
+  if (password != confirm_password) {
+    errors.push({ text: "Contraseñas no coinciden" });
+  }
+  if (password.length < 4) {
+    errors.push({ text: "Contraseña debe ser de más de 4 caractéres" });
+  }
+  if (errors.length > 0) {
+    res.render("users/signup", {
+      errors,
+      name,
+      email,
+      password,
+      confirm_password
+    });
+  } else {
+    // Look for email coincidence
+    const emailUser = await User.findOne({ email: email });
+    if (emailUser) {
+      req.flash("error_msg", "El correo ya está en uso");
+      res.redirect("/users/signup");
     } else {
-        // Look for email coincidence
-        const emailUser = await User.findOne({
-            email: email
-        });
-        if (emailUser) {
-            req.flash("error_msg", "The Email is already in use.");
-            res.redirect("/users/signup");
-        } else {
-            // Saving a New User
-            const newUser = new User({
-                name,
-                email,
-                password
-            });
-            newUser.password = await newUser.encryptPassword(password);
-            await newUser.save();
-            req.flash("success_msg", "You are registered.");
-            res.redirect("/users/signin");
-        }
+      // Saving a New User
+      const newUser = new User({ name, email, password });
+      newUser.password = await newUser.encryptPassword(password);
+      await newUser.save();
+      req.flash("success_msg", "Te has registrado");
+      res.redirect("/users/signup");
     }
-})
+  }
+});
 
 router.get('/users/logout', (req, res) => {
     req.logout();
