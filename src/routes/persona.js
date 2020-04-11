@@ -28,6 +28,14 @@ router.get('/personas-data', async (req, res) => {
     });
 });
 
+router.get('/socios-data', async (req, res) => {
+    const socio = await Socio.find();
+    res.send({
+        socio
+    });
+});
+
+
 router.post('/personas/new-persona', async (req, res) => {
     //Persona
     const {
@@ -83,7 +91,6 @@ router.post('/personas/new-persona', async (req, res) => {
                 Barco: [matricula, dni, nombre, amarre, cuota], 
                 Salida: [matricula, fecha, hora, destino, dni]*/
             });
-            
             await newPersona.save();
         }
         
@@ -143,38 +150,84 @@ router.post('/personas/new-persona', async (req, res) => {
     }
 });
 
-router.get('/productos/edit/:id', async (req, res) => {
-    const producto = await Producto.findById(req.params.id);
-    /*if (producto.user != req.user.id) {
-        req.flash("error_msg", "Not Authorized");
-        return res.redirect("/notes");
-    }*/
-    res.render("productos/edit-producto", {
-        producto
+router.get('/personas/edit/:id', async (req, res) => {
+    //const producto = await Producto.findById(req.params.id);
+    const personas = await Persona.findById(req.params.id);
+    const socio = await Socio.findById(req.params.id);
+    const patron = await Patron.findById(req.params.id);
+    const barco = await Barco.findById(req.params.id);
+    const salida = await Salida.findById(req.params.id);
+
+    res.render('personas/edit-persona', {
+        personas, socio, patron, barco, salida
     });
 });
 
-router.put('/productos/edit-producto/:id', async (req, res) => {
+router.put('/personas/edit-persona/:id', async (req, res) => {
     const {
-        CodigoMateriaPrima,
-        Descripcion,
-        PuntosReOrden,
-        UnidadDeMedida
+        dni,
+        nombre,
+        direccion
     } = req.body;
-    await Producto.findByIdAndUpdate(req.params.id, {
-        CodigoMateriaPrima,
-        Descripcion,
-        PuntosReOrden,
-        UnidadDeMedida
+    console.log('Objeto', dni, nombre, direccion);
+    await Persona.findByIdAndUpdate(req.params.id, {
+        dni,
+        nombre,
+        direccion
     });
-    req.flash("success_msg", "Producto Editado Exitosamente");
-    res.redirect("/productos");
+
+    /*
+                Barco
+
+                dnisocio,
+                matricula,
+                nombreBarco,
+                amarre,
+                cuota
+
+                Salida
+
+                matriculaSalida,
+                fecha,
+                hora,
+                destino,
+                dnipatronSalida
+    */
+    req.flash("success_msg", "Persona Editada Exitosamente");
+    res.redirect("/personas");
+});
+//Persona
+router.delete('/personas/delete/:id', async (req, res) => {
+    await Persona.findByIdAndDelete(req.params.id);
+    req.flash("success_msg", "Persona Eliminada Exitosamente");
+    res.redirect("/personas");
 });
 
-router.delete('/productos/delete/:id', async (req, res) => {
-    await Producto.findByIdAndDelete(req.params.id);
-    req.flash("success_msg", "Producto Eliminado Exitosamente");
-    res.redirect("/productos");
+//Socio
+router.delete('/socio/delete/:id', async (req, res) => {
+    await Socio.findByIdAndDelete(req.params.id);
+    req.flash("success_msg", "Socio Eliminado Exitosamente");
+    res.redirect("/personas");
+});
+//Patron
+router.delete('/patron/delete/:id', async (req, res) => {
+    await Patron.findByIdAndDelete(req.params.id);
+    req.flash("success_msg", "Patron Eliminado Exitosamente");
+    res.redirect("/personas");
+});
+
+//Barco
+router.delete('/barco/delete/:id', async (req, res) => {
+    await Barco.findByIdAndDelete(req.params.id);
+    req.flash("success_msg", "Socio Eliminado Exitosamente");
+    res.redirect("/personas");
+});
+
+//Salida
+router.delete('/salida/delete/:id', async (req, res) => {
+    await Salida.findByIdAndDelete(req.params.id);
+    req.flash("success_msg", "Salida Eliminada Exitosamente");
+    res.redirect("/personas");
 });
 
 

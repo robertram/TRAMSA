@@ -107,6 +107,15 @@
               <td>{{ this.dni }}</td>
               <td>{{ this.nombre }}</td>
               <td>{{ this.direccion }}</td>
+              <td class="btn btn-warning button-form" type="submit"><a href="/personas/edit/{{_id}}">Modificar</a></td>
+
+              <form action="/personas/delete/{{_id}}?_method=DELETE" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <td class="btn btn-danger button-form" type="submit">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class=" btn-danger button-form">Delete</button>
+                </td>
+              </form>
             </tr>
             {{/each}}
           </tbody>
@@ -125,6 +134,13 @@
             {{#each socio}}
             <tr>
               <td>{{ this.dnisocio }}</td>
+              <form action="/socio/delete/{{_id}}?_method=DELETE" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <td class="btn btn-danger button-form" type="submit">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class=" btn-danger button-form">Delete</button>
+                </td>
+              </form>
             </tr>
             {{/each}}
           </tbody>
@@ -143,6 +159,13 @@
             {{#each patron}}
             <tr>
               <td>{{ this.dnipatron }}</td>
+              <form action="/patron/delete/{{_id}}?_method=DELETE" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <td class="btn btn-danger button-form" type="submit">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class=" btn-danger button-form">Delete</button>
+                </td>
+              </form>
             </tr>
             {{/each}}
           </tbody>
@@ -169,6 +192,13 @@
               <td>{{ this.nombreBarco }}</td>
               <td>{{ this.amarre }}</td>
               <td>{{ this.cuota }}</td>
+              <form action="/barco/delete/{{_id}}?_method=DELETE" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <td class="btn btn-danger button-form" type="submit">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class=" btn-danger button-form">Delete</button>
+                </td>
+              </form>
               
             </tr>
             {{/each}}
@@ -195,7 +225,13 @@
                     <td>{{ this.hora }}</td>
                     <td>{{ this.destino }}</td>
                     <td>{{ this.dnipatronSalida }}</td>
-                    
+                    <form action="/salida/delete/{{_id}}?_method=DELETE" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <td class="btn btn-danger button-form" type="submit">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class=" btn-danger button-form">Delete</button>
+                </td>
+              </form>
                     </tr>
                     {{/each}}
                 </tbody>
