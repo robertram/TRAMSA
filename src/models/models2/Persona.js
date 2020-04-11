@@ -4,6 +4,7 @@ const {
 } = require('mongoose');
 
 const PersonaSchema = new Schema({
+    _id: Schema.Types.ObjectId,
     dni: Number,
     nombre: String,
     direccion: String,
