@@ -1,0 +1,111 @@
+<div class="containerInfo">
+  <div class="container" style="margin-top: 8%;">
+    <div class="row">
+      <div class="col-10">
+        <h2 class="text">Productos</h2>
+        <form action="/productos/new-producto" method="POST" class="needs-validation" novalidate>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">Codigo del Producto</label>
+              <input name="CodigoProducto" type="number" class="form-control" id="validationCustom01" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom02">Descripcion</label>
+              <input name="Descripcion" type="text" class="form-control" id="validationCustom02" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustomUsername">Punto de Reorden</label>
+              <div class="input-group">
+                <input name="PuntosReOrden" type="text" class="form-control" id="validationCustomUsername"
+                  aria-describedby="inputGroupPrepend" required>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom03">Unidad de Medida</label>
+              <input name="UnidadDeMedida" type="text" class="form-control" id="validationCustom03" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom03">Código Materia Prima</label>
+              <input name="CodigoMateriaPrima" type="number" class="form-control" id="validationCustom03" required>
+            </div>
+            <!--Falta Codigo Materia Prima-->
+          </div>
+          <button class="btn btn-primary" type="submit">Agregar</button>
+
+        </form>
+
+        <table class="table" style="margin-top: 10%;">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Codigo de Producto</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Punto de Reorden</th>
+              <th scope="col">Unidad de Medida</th>
+              <th scope="col">Codigo de Materia Prima</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each productos}}
+            <tr>
+              <td>{{ this.CodigoProducto }}</td>
+              <td>{{ this.Descripcion }}</td>
+              <td>{{ this.PuntosReOrden }}</td>
+              <td>{{ this.UnidadDeMedida }}</td>
+              <td>{{ this.CodigoMateriaPrima }}</td>
+              <td class="btn btn-warning button-form" type="submit"><a href="/productos/edit/{{_id}}">Modificar</a></td>
+              <!--<td class="btn btn-danger button-form" type="submit"><a href="/productos/delete/{{_id}}">Eliminar</a></td>
+              -->
+              <form action="/productos/delete/{{_id}}?_method=DELETE" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <td class="btn btn-danger button-form" type="submit">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class=" btn-danger button-form">Delete</button>
+                </td>
+              </form>
+
+              <!--<form action="/notes/delete/{{_id}}?_method=DELETE" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger btn-block btn-sm">Delete</button>
+              </form>-->
+            </tr>
+            {{else}}
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="card mx-auto">
+            <div class="card-body">
+              <h1>Hola {{user.name}}</h1>
+              <p clsss="lead">Aún no hay productos creados</p>
+              <a class="btn btn-success btn-block">Crea Uno!</a>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        <script>
+          // Example starter JavaScript for disabling form submissions if there are invalid fields
+          (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.getElementsByClassName('needs-validation');
+              // Loop over them and prevent submission
+              var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add('was-validated');
+                }, false);
+              });
+            }, false);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

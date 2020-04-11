@@ -1,0 +1,102 @@
+<div class="containerInfo">
+    <div class="container" style="margin-top: 8%;">
+        <div class="row">
+            <div class="col-10">
+                <h2 class="text">Camiones</h2>
+                <form action="/camiones/new-camion" class="needs-validation" method="POST" novalidate>
+                    <div class="form-row" style="margin-top: 5%;">
+                        <div class="col-md-4 mb-3">
+                            <label for="CodigoCamion">Código Camión</label>
+                            <input name="CodigoCamion" type="number" class="form-control" id="CodigoCamion" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Descripcion">Descripción</label>
+                            <input name="Descripcion" type="text" class="form-control" id="Descripcion" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="NombreCorto">Nombre Corto</label>
+                            <div class="input-group">
+                                <input name="NombreCorto" type="text" class="form-control" id="NombreCorto"
+                                    aria-describedby="inputGroupPrepend" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="Marca">Marca</label>
+                            <input name="Marca" type="text" class="form-control" id="Marca" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Año">Año</label>
+                            <input name="Año" type="number" class="form-control" id="Año" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Placa">Placa</label>
+                            <input name="Placa" type="text" class="form-control" id="Placa" required>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="submit">Agregar</button>
+                    </div>
+
+                    <table class="table" style="margin-top: 10%;">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Código Camión</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Nombre Corto</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Año</th>
+                                <th scope="col">Placa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each camiones}}
+                            <tr>
+                                <td>{{ this.CodigoCamion}}</td>
+                                <td>{{ this.Descripcion}}</td>
+                                <td>{{ this.NombreCorto}}</td>
+                                <td>{{ this.Marca}}</td>
+                                <td>{{ this.Año}}</td>
+                                <td>{{ this.Placa}}</td>
+                                <td class="btn btn-warning button-form" type="submit">Modificar</td>
+                                <td class="btn btn-danger button-form" type="submit">Eliminar</td>
+                            </tr>
+                            {{else}}
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="card mx-auto">
+                            <div class="card-body">
+                                <h1>Hola {{user.name}}</h1>
+                                <p clsss="lead">Aún no hay camiones registrados</p>
+                                <a class="btn btn-success btn-block">Registra Uno!</a>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </form>
+                <script>
+                    // Example starter JavaScript for disabling form submissions if there are invalid fields
+                    (function () {
+                        'use strict';
+                        window.addEventListener('load', function () {
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            var forms = document.getElementsByClassName('needs-validation');
+                            // Loop over them and prevent submission
+                            var validation = Array.prototype.filter.call(forms, function (form) {
+                                form.addEventListener('submit', function (event) {
+                                    if (form.checkValidity() === false) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        }, false);
+                    })();
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
