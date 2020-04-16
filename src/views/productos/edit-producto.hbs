@@ -11,10 +11,9 @@
             </div>-->
             <div class="col-md-4 mb-3">
               <label for="validationCustom02">Descripcion</label>
-              <input name="Descripcion" type="text" class="form-control" id="validationCustom02" value="{{producto.Descripcion}}" required>
+              <input name="Descripcion" type="text" class="form-control" id="validationCustom02"
+                value="{{producto.Descripcion}}" required>
             </div>
-          </div>
-          <div class="form-row">
             <div class="col-md-4 mb-3">
               <label for="validationCustomUsername">Punto de Reorden</label>
               <div class="input-group">
@@ -22,21 +21,56 @@
                   aria-describedby="inputGroupPrepend" value="{{producto.PuntosReOrden}}" required>
               </div>
             </div>
-            <div class="col-md-4 mb-3">
+          </div>
+          <div class="form-row">
+            
+
+            <!--<div class="col-md-4 mb-3">
               <label for="validationCustom03">Unidad de Medida</label>
-              <input name="UnidadDeMedida" type="text" class="form-control" id="validationCustom03" value="{{producto.UnidadDeMedida}}" required>
-            </div>
-            <div class="col-md-4 mb-3">
+              <input name="UnidadDeMedida" type="text" class="form-control" id="validationCustom03"
+                value="{{producto.UnidadDeMedida}}" required>
+            </div>-->
+            <label>
+              Unidad de Medida
+              <br>
+              <select class="select" name="selectUM" id="selectUM">
+                <option value="1">Metros</option>
+                <option value="2">Metros cúbicos</option>
+                <option value="3">Metros cuadrados</option>
+                <option value="4">Litros</option>
+                <option value="5">Mililitros</option>
+              </select>
+            </label>
+
+            <!--<div class="col-md-4 mb-3">
               <label for="validationCustom03">Código Materia Prima</label>
-              <input name="CodigoMateriaPrima" type="number" class="form-control" id="validationCustom03" value="{{producto.CodigoMateriaPrima}}" required>
-            </div>
+              <input name="CodigoMateriaPrima" type="number" class="form-control" id="validationCustom03"
+                value="{{producto.CodigoMateriaPrima}}" required>
+            </div>-->
+
+            <label >
+                Código Materia Prima
+                <br>
+                <select class="select" name="selectCMT" id="selectCMT">
+                  <option value="1">Solido</option>
+                  <option value="2">Liquido</option>
+                  <option value="3">Gas</option>
+                  <option value="4">Químicos</option>
+                </select>
+              </label>
             <!--Falta Codigo Materia Prima-->
           </div>
           <button class="btn btn-primary" type="submit">Editar</button>
         </form>
         <script>
+          function SetSelects() {
+            document.getElementById("selectUM").value = {{producto.UnidadDeMedida}};
+            document.getElementById("selectCMT").value = {{producto.CodigoMateriaPrima}};
+          }
+
           // Example starter JavaScript for disabling form submissions if there are invalid fields
           (function () {
+            SetSelects();
             'use strict';
             window.addEventListener('load', function () {
               // Fetch all the forms we want to apply custom Bootstrap validation styles to

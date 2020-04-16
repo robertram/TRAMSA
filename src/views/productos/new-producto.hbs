@@ -5,16 +5,14 @@
         <h2 class="text">Productos</h2>
         <form action="/productos/new-producto" method="POST" class="needs-validation" novalidate>
           <div class="form-row" style="margin-top: 5%;">
-            <div class="col-md-4 mb-3">
+            <!--<div class="col-md-4 mb-3">
               <label for="validationCustom01">Codigo del Producto</label>
-              <input name="CodigoProducto" type="number" class="form-control" id="validationCustom01" required>
-            </div>
+              <input name="CodigoProducto" type="number" class="form-control" id="validationCustom01">
+            </div>-->
             <div class="col-md-4 mb-3">
               <label for="validationCustom02">Descripcion</label>
               <input name="Descripcion" type="text" class="form-control" id="validationCustom02" required>
             </div>
-          </div>
-          <div class="form-row">
             <div class="col-md-4 mb-3">
               <label for="validationCustomUsername">Punto de Reorden</label>
               <div class="input-group">
@@ -22,13 +20,46 @@
                   aria-describedby="inputGroupPrepend" required>
               </div>
             </div>
-            <div class="col-md-4 mb-3">
+            <!--<div class="col-md-4 mb-3">
               <label for="validationCustom03">Unidad de Medida</label>
               <input name="UnidadDeMedida" type="text" class="form-control" id="validationCustom03" required>
-            </div>
+            </div>-->
             <div class="col-md-4 mb-3">
+              <div class="select">
+                <label>
+                  Unidad de Medida
+                  <br>
+                  <select name="selectUM">
+                    <option value="1">Metros</option>
+                    <option value="2">Metros cúbicos</option>
+                    <option value="3">Metros cuadrados</option>
+                    <option value="4">Litros</option>
+                    <option value="5">Mililitros</option>
+                  </select>
+                </label>
+              </div>
+
+            </div>
+          </div>
+          <div class="form-row">
+            <!--<div class="col-md-4 mb-3">
               <label for="validationCustom03">Código Materia Prima</label>
               <input name="CodigoMateriaPrima" type="number" class="form-control" id="validationCustom03" required>
+            </div>-->
+            <div class="col-md-4 mb-3">
+              <div class="select">
+                <label>
+                  Código Materia Prima
+                  <br>
+                  <select name="selectCMT">
+                    <option value="1">Solido</option>
+                    <option value="2">Liquido</option>
+                    <option value="3">Gas</option>
+                    <option value="4">Químicos</option>
+                  </select>
+                </label>
+              </div>
+
             </div>
             <!--Falta Codigo Materia Prima-->
           </div>

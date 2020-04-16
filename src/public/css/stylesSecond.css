@@ -35,6 +35,17 @@ img {
   height: 100%;
   display: block;
 }
+/*
+.select{
+  margin-top: 8px;
+  padding: 0px 40px;
+  background-color: red;
+}*/
+
+.select select{
+  margin-top: 8px;
+  padding: 0px 40px;
+}
 
 #login {
   background-color: lightblue;
