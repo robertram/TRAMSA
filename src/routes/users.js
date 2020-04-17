@@ -20,10 +20,10 @@ router.post('/users/signin', passport.authenticate("local", {
     failureFlash: true
 }));
 
-router.get('/users/signup', isAuthenticated, (req, res) => {
+router.get('/users/signup',isAuthenticated, (req, res) => {
     res.render('users/signup')
 });
-
+/*
 //Put Para usuarios
 //Cambiar todo lo de productos por usuarios
 router.put('/productos/edit-producto/:id', isAuthenticated, async (req, res) => {
@@ -39,7 +39,7 @@ router.put('/productos/edit-producto/:id', isAuthenticated, async (req, res) => 
   });
   req.flash("success_msg", "Producto Editado Exitosamente");
   res.redirect("/productos");
-});
+});*/
 
 router.post('/users/signup', isAuthenticated, async (req, res) => {
     let errors = [];
