@@ -38,14 +38,9 @@
                   </select>
                 </label>
               </div>
-
             </div>
           </div>
           <div class="form-row">
-            <!--<div class="col-md-4 mb-3">
-              <label for="validationCustom03">Código Materia Prima</label>
-              <input name="CodigoMateriaPrima" type="number" class="form-control" id="validationCustom03" required>
-            </div>-->
             <div class="col-md-4 mb-3">
               <div class="select">
                 <label>
@@ -86,8 +81,6 @@
               <td>{{ this.UnidadDeMedida }}</td>
               <td>{{ this.CodigoMateriaPrima }}</td>
               <td class="btn btn-warning button-form" type="submit"><a href="/productos/edit/{{_id}}">Modificar</a></td>
-              <!--<td class="btn btn-danger button-form" type="submit"><a href="/productos/delete/{{_id}}">Eliminar</a></td>
-              -->
               <form action="/productos/delete/{{_id}}?_method=DELETE" method="POST"
                 enctype="application/x-www-form-urlencoded">
                 <td class="btn btn-danger button-form" type="submit">
@@ -95,12 +88,6 @@
                   <button type="submit" class=" btn-danger button-form">Delete</button>
                 </td>
               </form>
-
-              <!--<form action="/notes/delete/{{_id}}?_method=DELETE" method="POST"
-                enctype="application/x-www-form-urlencoded">
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-danger btn-block btn-sm">Delete</button>
-              </form>-->
             </tr>
             {{else}}
           </tbody>

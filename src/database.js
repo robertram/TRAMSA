@@ -5,7 +5,7 @@ const mongoose= require('mongoose');
 const LIBROS_HOST= process.env.LIBROS_APP_MONGODB_HOST;
 const LIBROS_DATABASE = process.env.LIBROS_APP_DATABASE;
 const MONGODB_URL =`mongodb://${LIBROS_HOST}/${LIBROS_DATABASE}`;
-
+const MONGOATLASURL= process.env.MONGOATLASURL;
 
 mongoose.connect(MONGODB_URL,{
     useCreateIndex:true,

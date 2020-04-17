@@ -77,11 +77,13 @@ router.get('/productos/edit/:id', isAuthenticated, async (req, res) => {
 
 router.put('/productos/edit-producto/:id', isAuthenticated, async (req, res) => {
     const {
-        CodigoMateriaPrima,
+        //CodigoMateriaPrima,
         Descripcion,
-        PuntosReOrden,
-        UnidadDeMedida
+        PuntosReOrden
+        //UnidadDeMedida
     } = req.body;
+    const CodigoMateriaPrima= req.body.selectCMT;
+    const UnidadDeMedida= req.body.selectUM;
     await Producto.findByIdAndUpdate(req.params.id, {
         CodigoMateriaPrima,
         Descripcion,
