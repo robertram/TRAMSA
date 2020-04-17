@@ -1,0 +1,88 @@
+<div class="containerInfo">
+  <div class="container" style="margin-top: 8%;">
+    <div class="row">
+      <div class="col-10">
+        <h2 class="text">Materia Prima</h2>
+        <form action="/materiaPrima/new-materiaPrima" method="POST" class="needs-validation" novalidate>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="col-md-4 mb-3">
+              <label for="CodigoMateriaPrima">Codigo de Materia Prima</label>
+              <input name="CodigoMateriaPrima" type="number" class="form-control" id="CodigoMateriaPrima" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="Nombre">Nombre</label>
+              <input name="Nombre" type="text" class="form-control" id="Nombre" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="CantidadExistente">Cantidad Existente</label>
+              <input name="CantidadExistente" type="number" class="form-control" id="CantidadExistente" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="UnidadDeMedida">Unidad de Medida</label>
+              <div class="input-group">
+                <input name="UnidadDeMedida" type="text" class="form-control" id="UnidadDeMedida"
+                  aria-describedby="inputGroupPrepend" required>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Agregar</button>
+
+          <table class="table" style="margin-top: 10%;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Codigo de Materia Prima</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cantidad Existente</th>
+                <th scope="col">Unidad de Medida</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each materiaPrima}}
+              <tr>
+                <td> {{this.CodigoMateriaPrima}}</td>
+                <td> {{this.Nombre}}</td>
+                <td> {{this.CantidadExistente}}</td>
+                <td> {{this.UnidadDeMedida}}</td>
+                <td><button class="btn btn-warning" type="submit">Modificar</button></td>
+                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
+              </tr>
+              {{else}}
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="card mx-auto">
+              <div class="card-body">
+                <h1>Hola {{user.name}}</h1>
+                <p clsss="lead">Aún no hay materia prima registrados</p>
+                <a  class="btn btn-success btn-block">Registra Una!</a>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </form>
+        <script>
+          // Example starter JavaScript for disabling form submissions if there are invalid fields
+          (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.getElementsByClassName('needs-validation');
+              // Loop over them and prevent submission
+              var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add('was-validated');
+                }, false);
+              });
+            }, false);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

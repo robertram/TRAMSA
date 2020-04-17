@@ -1,0 +1,81 @@
+<div class="containerInfo">
+    <div class="container" style="margin-top: 8%;">
+        <div class="row">
+            <div class="col-10">
+                <h2 class="text">Consecutivos</h2>
+                <form action="/consecutivos/new-consecutivo" method="POST" class="needs-validation" novalidate>
+                    <div class="form-row" style="margin-top: 5%;">
+                        <div class="col-md-4 mb-3">
+                            <label for="Prefijo">Prefijo</label>
+                            <input name="Prefijo" type="text" class="form-control" id="Prefijo" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="ValorConsecutivo">Valor Consecutivo</label>
+                            <input name="ValorConsecutivo" type="number" class="form-control" id="ValorConsecutivo"
+                                required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Descripcion">Descripcion</label>
+                            <div class="input-group">
+                                <input name="Descripcion" type="text" class="form-control" id="Descripcion"
+                                    aria-describedby="inputGroupPrepend" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Agregar</button>
+
+                    <table class="table" style="margin-top: 10%;">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Prefijo</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Valor Consecutivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each consecutivos}}
+                            <tr>
+                                <td>{{this.Prefijo}}</td>
+                                <td>{{this.Descripcion}}</td>
+                                <td>{{this.ValorConsecutivo}}</td>
+                                <td><button class="btn btn-warning" type="submit">Modificar</button></td>
+                                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
+                            </tr>
+                            {{else}}
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="card mx-auto">
+                            <div class="card-body">
+                                <h1>Hola {{user.name}}</h1>
+                                <p clsss="lead">Aún no hay consecutivos registrados</p>
+                                <a class="btn btn-success btn-block">Registra Uno!</a>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </form>
+                <script>
+                    // Example starter JavaScript for disabling form submissions if there are invalid fields
+                    (function () {
+                        'use strict';
+                        window.addEventListener('load', function () {
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            var forms = document.getElementsByClassName('needs-validation');
+                            // Loop over them and prevent submission
+                            var validation = Array.prototype.filter.call(forms, function (form) {
+                                form.addEventListener('submit', function (event) {
+                                    if (form.checkValidity() === false) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        }, false);
+                    })();
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

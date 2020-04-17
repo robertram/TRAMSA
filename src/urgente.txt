@@ -1,0 +1,55 @@
+---Página para cambiar la contraseña
+Vieja contraseña
+Nueva contraseña
+Confirmar Nueva contraseña
+
+Hacer vista y en routes/users
+
+---Bitácora 
+Registrar 
+
+---Terminar demás páginas 
+Administración:
+Clientes
+
+Procesos:
+Crear Pedido Materias
+Comprobar Orden de Pedido
+Entrada de Inventario
+Producción en Lote
+Punto de Venta
+
+Cajas:
+Apertura de Cajas
+Arqueo de Cajas
+Pases de Dinero
+Cierre de Caja
+
+Seguridad:
+Eventos
+Roles
+Usuarios
+
+Consultas
+Clientes
+Pedidos Pendientes
+Facturas
+
+Reportes
+Productos
+Clientes
+Inventarios
+Ventas
+Costos en Produccion
+Estadisticas
+
+Ayuda
+
+---Pasar la Base de Datos a MongoAtlas
+Crear usuario en la base de datos nueva
+
+---Buscar módulo para hacer búsquedas en la base de datos
+
+
+
+
