@@ -5,14 +5,14 @@ const mongoose= require('mongoose');
 const LIBROS_HOST= process.env.LIBROS_APP_MONGODB_HOST;
 const LIBROS_DATABASE = process.env.LIBROS_APP_DATABASE;
 const MONGODB_URL =`mongodb://${LIBROS_HOST}/${LIBROS_DATABASE}`;
+const MONGOATLASURL= process.env.MONGOATLASURL;
 
-
-mongoose.connect(MONGODB_URL,{
+mongoose.connect(MONGOATLASURL,{
     useCreateIndex:true,
     useNewUrlParser:true,
     useUnifiedTopology:true
-}).then(db=>console.log('Base de datos esta conectada', MONGODB_URL))
+}).then(db=>console.log('Base de datos esta conectada', MONGOATLASURL))
 .catch(err=>{
-    console.log('direccion --',MONGODB_URL)
+    console.log('direccion --',MONGOATLASURL)
     console.log('Mensaje de error: ',err);
 })

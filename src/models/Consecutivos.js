@@ -15,4 +15,10 @@ const ConsecutivosSchema = new Schema({
     }
 },{timestamps:true}) 
 
+const consecutivo={
+    Prejio: "PRO", 
+    Descripcion: "Productos", 
+    Valor: 50
+}
+
 module.exports = model('Consecutivos',ConsecutivosSchema)

@@ -20,38 +20,25 @@ router.get('/productos', isAuthenticated, async (req, res) => {
 
 router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
     const {
-        CodigoMateriaPrima,
+        //CodigoMateriaPrima,
         Descripcion,
         PuntosReOrden,
-        UnidadDeMedida
+        //UnidadDeMedida
     } = req.body;
+    const CodigoMateriaPrima= req.body.selectCMT;
+    const UnidadDeMedida= req.body.selectUM;
     const CodigoProducto = 1;
     const errors = [];
     //Chequeo si está vacío el textbox
-    if (!CodigoMateriaPrima) {
-        errors.push({
-            text: "Please Write a CodigoMateriaPrima."
-        });
-    }
+    
     if (!Descripcion) {
         errors.push({
-            text: "Please Write a Descripcion"
+            text: "Escribe Descripcion"
         });
     }
     if (!PuntosReOrden) {
         errors.push({
-            text: "Please Write a PuntosReOrden."
-        });
-    }
-    if (!UnidadDeMedida) {
-        errors.push({
-            text: "Please Write a UnidadDeMedida"
-        });
-    }
-
-    if (!CodigoProducto) {
-        errors.push({
-            text: "Please Write a CodigoProducto"
+            text: "Escribe Puntos ReOrden."
         });
     }
 
@@ -74,19 +61,15 @@ router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
             UnidadDeMedida
         });
         newProducto.CodigoProducto = cantidadProductos + 1;
-        //newProducto.user = req.user.id;
         await newProducto.save();
-        //req.flash("success_msg", "Producto Añadido");
+        req.flash("success_msg", "Producto Añadido");
         res.redirect("/productos");
     }
 });
 
 router.get('/productos/edit/:id', isAuthenticated, async (req, res) => {
     const producto = await Producto.findById(req.params.id);
-    /*if (producto.user != req.user.id) {
-        req.flash("error_msg", "Not Authorized");
-        return res.redirect("/notes");
-    }*/
+
     res.render("productos/edit-producto", {
         producto
     });
@@ -94,11 +77,13 @@ router.get('/productos/edit/:id', isAuthenticated, async (req, res) => {
 
 router.put('/productos/edit-producto/:id', isAuthenticated, async (req, res) => {
     const {
-        CodigoMateriaPrima,
+        //CodigoMateriaPrima,
         Descripcion,
-        PuntosReOrden,
-        UnidadDeMedida
+        PuntosReOrden
+        //UnidadDeMedida
     } = req.body;
+    const CodigoMateriaPrima= req.body.selectCMT;
+    const UnidadDeMedida= req.body.selectUM;
     await Producto.findByIdAndUpdate(req.params.id, {
         CodigoMateriaPrima,
         Descripcion,

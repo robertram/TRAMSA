@@ -36,6 +36,18 @@ img {
   display: block;
 }
 
+/*
+.select{
+  margin-top: 8px;
+  padding: 0px 40px;
+  background-color: red;
+}*/
+
+.select select {
+  margin-top: 8px;
+  padding: 0px 40px;
+}
+
 #login {
   background-color: lightblue;
 }
@@ -73,7 +85,7 @@ body {
 
 .sidebar {
   background-color: #E9E2EF;
-  height: 150%;   
+  height: 150%;
 }
 
 #navTramsa {
@@ -163,7 +175,7 @@ body {
   -webkit-box-align: center;
 }
 
-#alerta{
+#alerta {
   width: 50%;
   margin: auto;
 }
@@ -171,6 +183,13 @@ body {
 .logo {
   width: 30%;
 }
+
+table {
+  Display: block;
+  Width: 100%;
+  Overflow-x: auto;
+}
+
 
 @media (min-width: 992px) {
   .wrapper .sideMenu {

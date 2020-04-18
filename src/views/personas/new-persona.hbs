@@ -1,0 +1,229 @@
+<div class="containerInfo">
+  <div class="container" style="margin-top: 8%;">
+    <div class="row">
+      <div class="col-10">
+        <h2 class="text">Personas</h2>
+        <form action="/personas/new-persona" method="POST" class="needs-validation">
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">DNI</label>
+              <input name="dni" type="number" class="form-control" id="validationCustom01">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom02">Nombre</label>
+              <input name="nombre" type="text" class="form-control" id="validationCustom02">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustomUsername">Direccion</label>
+              <div class="input-group">
+                <input name="direccion" type="text" class="form-control" id="validationCustomUsername"
+                  aria-describedby="inputGroupPrepend">
+              </div>
+            </div>
+          </div>
+          
+
+          <h4>Socio</h4>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label"><input class="form-check-input" name="socio" type="radio"
+                    value="yes">Si</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label"><input class="form-check-input" name="socio" type="radio"
+                    value="no">No</label>
+              </div>
+            </div>
+          </div>
+
+           <h4>Patrón</h4>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label"><input class="form-check-input" name="patron" type="radio"
+                    value="yes">Si</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label"><input class="form-check-input" name="patron" type="radio"
+                    value="no">No</label>
+              </div>
+            </div>
+          </div>
+          
+
+          <h4>Barco</h4>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">Matricula</label>
+              <input name="matricula" type="number" class="form-control" id="validationCustom01">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">Nombre</label>
+              <input name="nombreBarco" type="text" class="form-control" id="validationCustom01">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">Amarre</label>
+              <input name="amarre" type="text" class="form-control" id="validationCustom01">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">Cuota</label>
+              <input name="cuota" type="text  " class="form-control" id="validationCustom01">
+            </div>
+          </div>
+
+          <h4>Salida</h4>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">Fecha</label>
+              <input name="fecha" type="text" class="form-control" id="validationCustom01">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">Hora</label>
+              <input name="hora" type="text" class="form-control" id="validationCustom01">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">Destino</label>
+              <input name="destino" type="text  " class="form-control" id="validationCustom01">
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Agregar</button>
+        </form>
+
+        
+        <h5>Persona</h5>
+
+        <table class="table" style="margin-top: 10%;">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Dni</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Direccion</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each personas}}
+            <tr>
+              <td>{{ this.dni }}</td>
+              <td>{{ this.nombre }}</td>
+              <td>{{ this.direccion }}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+        
+        <h5>Socio</h5>
+
+        <table class="table" style="margin-top: 10%;">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Dni Socio</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each socio}}
+            <tr>
+              <td>{{ this.dnisocio }}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+        
+        <h3>Patron</h3>
+
+        <table class="table" style="margin-top: 10%;">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Dni Patron</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each patron}}
+            <tr>
+              <td>{{ this.dnipatron }}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+        
+        <h3>Barco</h3>
+
+        <table class="table" style="margin-top: 10%;">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Dni Patron</th>
+              <th scope="col">Matricula</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Amarre</th>
+              <th scope="col">Cuota</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each barco}}
+            <tr>
+              <td>{{ this.dnisocio }}</td>
+              <td>{{ this.matriculaSalida }}</td>
+              <td>{{ this.nombreBarco }}</td>
+              <td>{{ this.amarre }}</td>
+              <td>{{ this.cuota }}</td>
+              
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+        <h3>Salida</h3>
+        
+        <table class="table" style="margin-top: 10%;">
+                <thead class="thead-light">
+                    <tr>
+                    <th scope="col">Matricula</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Dni Patron</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each salida}}
+                    <tr>
+                    <td>{{ this.matriculaSalida }}</td>
+                    <td>{{ this.fecha }}</td>
+                    <td>{{ this.hora }}</td>
+                    <td>{{ this.destino }}</td>
+                    <td>{{ this.dnipatronSalida }}</td>
+                    
+                    </tr>
+                    {{/each}}
+                </tbody>
+        </table>
+
+        <script>
+          // Example starter JavaScript for disabling form submissions if there are invalid fields
+          (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.getElementsByClassName('needs-validation');
+              // Loop over them and prevent submission
+              var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add('was-validated');
+                }, false);
+              });
+            }, false);
+          })();
+        </script>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
