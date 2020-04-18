@@ -14,6 +14,11 @@ router.get('/users/signin', (req, res) => {
     res.render('users/signin')
 });
 
+router.get('/users/changePassword', isAuthenticated, async (req,res) =>{
+  const user = await User.findById(req.user);
+  res.render('users/changePassword', {user});
+})
+
 router.post('/users/signin', passport.authenticate("local", {
     successRedirect: "/productos",
     failureRedirect: "/users/signin",
@@ -23,23 +28,44 @@ router.post('/users/signin', passport.authenticate("local", {
 router.get('/users/signup',isAuthenticated, (req, res) => {
     res.render('users/signup')
 });
-/*
-//Put Para usuarios
-//Cambiar todo lo de productos por usuarios
-router.put('/productos/edit-producto/:id', isAuthenticated, async (req, res) => {
-  const {
-      Descripcion,
-      PuntosReOrden
+
+router.put('/users/changePassword/:id', isAuthenticated, async (req, res) => {
+  let errores = [];
+  var {
+    oldPassword,
+    password,
+    confirmedPassword
   } = req.body;
-  await Producto.findByIdAndUpdate(req.params.id, {
-      CodigoMateriaPrima,
-      Descripcion,
-      PuntosReOrden,
-      UnidadDeMedida
-  });
-  req.flash("success_msg", "Producto Editado Exitosamente");
-  res.redirect("/productos");
-});*/
+  
+  const currentPass = req.user.password;
+  console.log(currentPass);
+  console.log(oldPassword);
+  if(!password || !oldPassword || !confirmedPassword){
+    errores.push({text:"Por favor llene todos los campos"});
+    console.log('1');
+  }
+  if(oldPassword != currentPass){
+    errores.push({text:"Su contraseña actual no es correcta"});
+    console.log('2');
+  }
+  if(password != confirmedPassword){
+    errores.push({text: "Por favor revise que su nueva contraseña este bien escrita en ambos campos"});
+    console.log('3');
+  }
+  if(errores.length > 0){
+    console.log('4');
+    res.render('users/changePassword', {errores});
+  }else{
+    password = await req.user.encryptPassword(password);
+    console.log(password);
+    await User.findByIdAndUpdate(req.user, {
+        password
+    });
+    req.flash("success_msg", "Ha cambiado su contraseña");
+    res.redirect("/users/signin");
+  }
+  
+});
 
 router.post('/users/signup', isAuthenticated, async (req, res) => {
     let errors = [];
