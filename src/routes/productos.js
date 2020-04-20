@@ -4,11 +4,13 @@ const {
 const router = Router();
 
 const Producto = require('../models/Producto');
+const Consecutivo = require('../models/Consecutivos');
+
 const {
     isAuthenticated
 } = require('../helpers/auth');
 
-router.get('/productos', isAuthenticated, async (req, res) => {
+router.get('/productos', async (req, res) => {
     const productos = await Producto.find().sort([
         ['updatedAt', 'descending']
     ]);
@@ -18,7 +20,7 @@ router.get('/productos', isAuthenticated, async (req, res) => {
     });
 });
 
-router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
+router.post('/productos/new-producto', async (req, res) => {
     const {
         //CodigoMateriaPrima,
         Descripcion,
@@ -53,6 +55,7 @@ router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
         });
     } else {
         const cantidadProductos = await Producto.find().countDocuments();
+        
 
         const newProducto = new Producto({
             CodigoMateriaPrima,
@@ -60,14 +63,21 @@ router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
             PuntosReOrden,
             UnidadDeMedida
         });
+        
         newProducto.CodigoProducto = cantidadProductos + 1;
         await newProducto.save();
+        const Idproducto = await Producto.findById(req.params.id);
+        /*await Consecutivo.findByIdAndUpdate(req.params.id, {
+            ValorConsecutivo
+        });*/
+        console.log("id producto "+Idproducto+" _id "+_id);
         req.flash("success_msg", "Producto Añadido");
         res.redirect("/productos");
     }
 });
 
-router.get('/productos/edit/:id', isAuthenticated, async (req, res) => {
+
+router.get('/productos/edit/:id', async (req, res) => {
     const producto = await Producto.findById(req.params.id);
 
     res.render("productos/edit-producto", {
@@ -75,7 +85,7 @@ router.get('/productos/edit/:id', isAuthenticated, async (req, res) => {
     });
 });
 
-router.put('/productos/edit-producto/:id', isAuthenticated, async (req, res) => {
+router.put('/productos/edit-producto/:id', async (req, res) => {
     const {
         //CodigoMateriaPrima,
         Descripcion,
@@ -94,7 +104,7 @@ router.put('/productos/edit-producto/:id', isAuthenticated, async (req, res) => 
     res.redirect("/productos");
 });
 
-router.delete('/productos/delete/:id', isAuthenticated, async (req, res) => {
+router.delete('/productos/delete/:id', async (req, res) => {
     await Producto.findByIdAndDelete(req.params.id);
     req.flash("success_msg", "Producto Eliminado Exitosamente");
     res.redirect("/productos");

@@ -8,7 +8,7 @@ const {
     isAuthenticated
 } = require('../helpers/auth');
 
-router.get('/consecutivos', isAuthenticated, async(req, res) => {
+router.get('/consecutivos', async(req, res) => {
     const consecutivos = await Consecutivo.find().sort([
         ['updatedAt', 'descending']
     ]);
@@ -17,10 +17,29 @@ router.get('/consecutivos', isAuthenticated, async(req, res) => {
     });
 });
 
-router.post('/consecutivos/new-consecutivo', isAuthenticated, async (req, res) => {
+//-----------Editar consecutivo------------------
+/*
+router.get('/consecutivos/edit/:id', async (req, res) => {
+    const consecutivo = await Consecutivo.findById(req.params.id);
+
+    res.send(
+        consecutivo
+    );
+});
+
+router.put('/consecutivos/edit-consecutivo/:id', async (req, res) => {
+    const ValorConsecutivo= 0;
+    await Producto.findByIdAndUpdate(req.params.id, {
+        ValorConsecutivo
+    });
+    req.flash("success_msg", "Consecutivo Editado Exitosamente");
+    res.redirect("/Consecutivo");
+});*/
+
+/*
+router.post('/consecutivos/new-consecutivo',  async (req, res) => {
     const {
         Prefijo,
-        ValorConsecutivo,
         Descripcion
     } = req.body;
     
@@ -46,12 +65,9 @@ router.post('/consecutivos/new-consecutivo', isAuthenticated, async (req, res) =
         res.render("consecutivos/new-consecutivo", {
             errors, //No se quita
             Prefijo,
-            ValorConsecutivo,
             Descripcion
         });
     } else {
-        const cantidadConsecutivos = await Consecutivo.find().countDocuments();
-        console.log(cantidadConsecutivos);
 
         const newConsecutivo = new Consecutivo({
             Prefijo,
@@ -64,6 +80,6 @@ router.post('/consecutivos/new-consecutivo', isAuthenticated, async (req, res) =
         //req.flash("success_msg", "Consecutivo Añadido");
         res.redirect("/consecutivos");
     }
-});
+});*/
 
 module.exports = router;
