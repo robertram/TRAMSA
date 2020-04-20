@@ -66,11 +66,34 @@ router.post('/productos/new-producto', async (req, res) => {
         
         newProducto.CodigoProducto = cantidadProductos + 1;
         await newProducto.save();
-        const Idproducto = await Producto.findById(req.params.id);
+
+        await Consecutivo.findOne({"Prefijo":"PR"}, (err,data)=>{
+            if(err || !data){
+                console.log(err);
+                return next(err);
+            }else{
+                var a = data.ValorConsecutivo;
+                a=a+1;
+                //Consecutivo.findOneAndUpdate({"Prefijo":"PR"}, {"ValorConsecutivo":a})
+                Consecutivo.updateOne({Prefijo:"PR"}, {$set: {ValorConsecutivo:a}}, (err, res)=>{
+                    if(err){
+                        console.log(err)
+                        throw err;
+                    }
+                })
+            }
+        });
+
+        /*
+        Count de los productos y que se agrege a Cantidad Consecutivos
+        
+        */
+
+        //const Idproducto = await Producto.findById(req.params.id);
         /*await Consecutivo.findByIdAndUpdate(req.params.id, {
             ValorConsecutivo
         });*/
-        console.log("id producto "+Idproducto+" _id "+_id);
+        //console.log("id producto "+Idproducto+" _id "+_id);
         req.flash("success_msg", "Producto Añadido");
         res.redirect("/productos");
     }

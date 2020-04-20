@@ -12,7 +12,10 @@ const ConsecutivosSchema = new Schema({
     ValorConsecutivo:{
         type:Number,
         require:true,
-    }
+    }, 
+    /*CantidadActual:{
+
+    }*/
 }) 
 
 module.exports = model('Consecutivos',ConsecutivosSchema)
