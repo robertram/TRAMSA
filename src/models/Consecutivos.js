@@ -13,9 +13,10 @@ const ConsecutivosSchema = new Schema({
         type:Number,
         require:true,
     }, 
-    /*CantidadActual:{
-
-    }*/
+    CantidadActual:{
+        type:Number,
+        require:true,
+    }
 }) 
 
 module.exports = model('Consecutivos',ConsecutivosSchema)

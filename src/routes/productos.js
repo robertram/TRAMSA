@@ -64,8 +64,8 @@ router.post('/productos/new-producto', async (req, res) => {
             UnidadDeMedida
         });
         
-        newProducto.CodigoProducto = cantidadProductos + 1;
-        await newProducto.save();
+        /*newProducto.CodigoProducto = cantidadProductos + 1;
+        await newProducto.save();*/
 
         await Consecutivo.findOne({"Prefijo":"PR"}, (err,data)=>{
             if(err || !data){
@@ -76,6 +76,24 @@ router.post('/productos/new-producto', async (req, res) => {
                 a=a+1;
                 //Consecutivo.findOneAndUpdate({"Prefijo":"PR"}, {"ValorConsecutivo":a})
                 Consecutivo.updateOne({Prefijo:"PR"}, {$set: {ValorConsecutivo:a}}, (err, res)=>{
+                    if(err){
+                        console.log(err)
+                        throw err;
+                    }else{
+                        newProducto.CodigoProducto = a;
+                        newProducto.save();
+                    }
+                })
+            }
+        });
+
+        await Consecutivo.findOne({"Prefijo":"PR"}, (err,data)=>{
+            if(err || !data){
+                console.log(err);
+                return next(err);
+            }else{
+                var cant = cantidadProductos+1;
+                Consecutivo.updateOne({Prefijo:"PR"}, {$set: {CantidadActual:cant}}, (err, res)=>{
                     if(err){
                         console.log(err)
                         throw err;
@@ -129,6 +147,22 @@ router.put('/productos/edit-producto/:id', async (req, res) => {
 
 router.delete('/productos/delete/:id', async (req, res) => {
     await Producto.findByIdAndDelete(req.params.id);
+    const cantidadProductos = await Producto.find().countDocuments();
+    console.log("cantidad "+cantidadProductos);
+    await Consecutivo.findOne({"Prefijo":"PR"}, (err,data)=>{
+        if(err || !data){
+            console.log(err);
+            return next(err);
+        }else{
+            var cant = cantidadProductos;
+            Consecutivo.updateOne({Prefijo:"PR"}, {$set: {CantidadActual:cant}}, (err, res)=>{
+                if(err){
+                    console.log(err)
+                    throw err;
+                }
+            })
+        }
+    });
     req.flash("success_msg", "Producto Eliminado Exitosamente");
     res.redirect("/productos");
 });
