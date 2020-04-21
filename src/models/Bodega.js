@@ -32,10 +32,6 @@ const BodegaSchema = new Schema({
     EspacioBodega:{
         type:Number,
         require:true,
-    }, 
-    Consecutivo:{
-        type:Number,
-        require:true
     }
 },{timestamps:true})   
 

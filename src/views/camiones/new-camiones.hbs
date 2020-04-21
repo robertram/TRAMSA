@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-10">
                 <h2 class="text">Camiones</h2>
-                <form action="/camiones/new-camion" class="needs-validation" method="POST" novalidate>
+                <form action="/camiones/new-camiones" method="POST" class="needs-validation" novalidate>
                     <div class="form-row" style="margin-top: 5%;">
                         <div class="col-md-4 mb-3">
                             <label for="CodigoCamion">Código Camión</label>
@@ -28,54 +28,70 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="Año">Año</label>
-                            <input name="Año" type="number" class="form-control" id="Año" required>
+                            <input name="Anio" type="number" class="form-control" id="Año" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="Placa">Placa</label>
                             <input name="Placa" type="text" class="form-control" id="Placa" required>
                         </div>
                     </div>
-                    <div>
-                        <button class="btn btn-primary" type="submit">Agregar</button>
-                    </div>
+                    <button class="btn btn-primary" type="submit">Agregar</button>
 
-                    <table class="table" style="margin-top: 10%;">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Código Camión</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Nombre Corto</th>
-                                <th scope="col">Marca</th>
-                                <th scope="col">Año</th>
-                                <th scope="col">Placa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each camiones}}
-                            <tr>
-                                <td>{{ this.CodigoCamion}}</td>
-                                <td>{{ this.Descripcion}}</td>
-                                <td>{{ this.NombreCorto}}</td>
-                                <td>{{ this.Marca}}</td>
-                                <td>{{ this.Año}}</td>
-                                <td>{{ this.Placa}}</td>
-                                <td class="btn btn-warning button-form" type="submit">Modificar</td>
-                                <td class="btn btn-danger button-form" type="submit">Eliminar</td>
-                            </tr>
-                            {{else}}
-                        </tbody>
-                    </table>
-                    <div class="row">
-                        <div class="card mx-auto">
-                            <div class="card-body">
-                                <h1>Hola {{user.name}}</h1>
-                                <p clsss="lead">Aún no hay camiones registrados</p>
-                                <a class="btn btn-success btn-block">Registra Uno!</a>
-                            </div>
-                        </div>
-                        {{/each}}
-                    </div>
                 </form>
+
+                <script>
+                    function deleteCamion() {
+                        document.getElementById("form-delete").submit();
+                        //alert("Hola muindo");
+                    }
+                </script>
+
+                <table class="table" style="margin-top: 10%;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Código Camión</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Nombre Corto</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Año</th>
+                            <th scope="col">Placa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each camiones}}
+                        <tr>
+                            <td>{{ this.CodigoCamion}}</td>
+                            <td>{{ this.Descripcion}}</td>
+                            <td>{{ this.NombreCorto}}</td>
+                            <td>{{ this.Marca}}</td>
+                            <td>{{ this.Anio}}</td>
+                            <td>{{ this.Placa}}</td>
+                            <td class=" btn btn-warning button-form" type="submit"><a class="btn-edit"
+                                    href="/camiones/edit/{{_id}}">Modificar</a></td>
+                            <td class="btn btn-danger button-form"><a onclick='deleteCamion()'>Eliminar</a></td>
+
+                            <form action="/camiones/delete/{{_id}}?_method=DELETE" method="POST"
+                                enctype="application/x-www-form-urlencoded" id="form-delete">
+                                <!--<td class=" btn btn-danger button-form" type="submit">
+                  <input type="hidden" name="_method" value="Delete">
+                  <button type="submit" class="btn-delete btn btn-danger button-form">Delete</button>
+                </td>-->
+                            </form>
+
+                        </tr>
+                        {{else}}
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            <h1>Hola {{user.name}}</h1>
+                            <p clsss="lead">Aún no hay productos creados</p>
+                            <a class="btn btn-success btn-block">Crea Uno!</a>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
                 <script>
                     // Example starter JavaScript for disabling form submissions if there are invalid fields
                     (function () {
@@ -99,4 +115,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

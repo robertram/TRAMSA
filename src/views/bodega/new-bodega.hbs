@@ -2,8 +2,8 @@
     <div class="container" style="margin-top: 8%;">
         <div class="row">
             <div class="col-10">
-                <h2 class="text">Bodegas</h2>
-                <form action="/bodegas/new-bodega" method="POST" class="needs-validation" novalidate>
+                <h2 class="text">Bodega</h2>
+                <form action="/bodega/new-bodega" method="POST" class="needs-validation" novalidate>
                     <div class="form-row" style="margin-top: 5%;">
                         <div class="col-md-4 mb-3">
                             <label for="CodigoBodega">Código Bodega</label>
@@ -45,49 +45,60 @@
                             <input name="TipoBodega" type="text" class="form-control" id="TipoBodega" required>
                         </div>
                     </div>
-                    <div style="margin-top: 5%;">
-                        <button class="btn btn-primary" type="submit">Agregar</button>
-                    </div>
+                    <button class="btn btn-primary" type="submit">Agregar</button>
 
-                    <table class="table" style="margin-top: 5%;">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Código Bodega</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Nombre Corto</th>
-                                <th scope="col">Alias</th>
-                                <th scope="col">Ubicación</th>
-                                <th scope="col">Espacio Bodega</th>
-                                <th scope="col">Unidad de Medida</th>
-                                <th scope="col">Tipo de Bodega</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each bodegas}}
-                            <tr>
-                                <td>{{this.CodigoBodega}}</td>
-                                <td>{{this.Nombre}}</td>
-                                <td>{{this.NombreCorto}}</td>
-                                <td>{{this.Alias}}</td>
-                                <td>{{this.Ubicacion}}</td>
-                                <td>{{this.EspacioBodega}}</td>
-                                <td>{{this.UnidadMedida}}</td>
-                                <td>{{this.TipoBodega}}</td>
-                            </tr>
-                            {{else}}
-                        </tbody>
-                    </table>
-                    <div class="row">
-                        <div class="card mx-auto">
-                            <div class="card-body">
-                                <h1>Hola {{user.name}}</h1>
-                                <p clsss="lead">Aún no hay bodegas registradas</p>
-                                <a href="/camiones/add" class="btn btn-success btn-block">Registra Una!</a>
-                            </div>
-                        </div>
-                        {{/each}}
-                    </div>
                 </form>
+
+                <script>
+                    function deleteBodega() {
+                        document.getElementById("form-delete").submit();
+                    }
+                </script>
+
+                <table class="table" style="margin-top: 10%;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Código Bodega</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Nombre Corto</th>
+                            <th scope="col">Alias</th>
+                            <th scope="col">Ubicación</th>
+                            <th scope="col">Espacio Bodega</th>
+                            <th scope="col">Unidad de Medida</th>
+                            <th scope="col">Tipo de Bodega</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each bodega}}
+                        <tr>
+                            <td>{{this.CodigoBodega}}</td>
+                            <td>{{this.Nombre}}</td>
+                            <td>{{this.NombreCorto}}</td>
+                            <td>{{this.Alias}}</td>
+                            <td>{{this.Ubicacion}}</td>
+                            <td>{{this.EspacioBodega}}</td>
+                            <td>{{this.UnidadMedida}}</td>
+                            <td>{{this.TipoBodega}}</td>
+                            <td class=" btn btn-warning button-form" type="submit"><a class="btn-edit"
+                                    href="/bodega/edit/{{_id}}">Modificar</a></td>
+                            <td class="btn btn-danger button-form"><a onclick='deleteBodega()'>Eliminar</a></td>
+                            <form action="/bodega/delete/{{_id}}?_method=DELETE" method="POST"
+                                enctype="application/x-www-form-urlencoded" id="form-delete">
+                            </form>
+                        </tr>
+                        {{else}}
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            <h1>Hola {{user.name}}</h1>
+                            <p clsss="lead">Aún no hay bodegas creadas</p>
+                            <a class="btn btn-success btn-block">Crea Una!</a>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
                 <script>
                     // Example starter JavaScript for disabling form submissions if there are invalid fields
                     (function () {
@@ -111,4 +122,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

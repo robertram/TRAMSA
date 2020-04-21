@@ -63,6 +63,7 @@ app.use(require('./routes/consecutivos'));
 app.use(require('./routes/parametrosGenerales'));
 app.use(require('./routes/bodegas'));
 app.use(require('./routes/persona'));
+app.use(require('./routes/tipoMateriaPrima'));
 
 //Archivos publicos
 app.use(express.static(path.join(__dirname, 'public')))
