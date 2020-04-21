@@ -102,11 +102,6 @@ router.post('/productos/new-producto', async (req, res) => {
             }
         });
 
-        /*
-        Count de los productos y que se agrege a Cantidad Consecutivos
-        
-        */
-
         //const Idproducto = await Producto.findById(req.params.id);
         /*await Consecutivo.findByIdAndUpdate(req.params.id, {
             ValorConsecutivo

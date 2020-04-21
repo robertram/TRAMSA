@@ -2,7 +2,7 @@ const {Schema, model} = require('mongoose');
 
 const ProductoSchema = new Schema({
     CodigoMateriaPrima:{
-        type:Number,
+        type:String, //Number
         require:true
     },
     Descripcion:{
