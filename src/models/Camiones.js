@@ -17,11 +17,15 @@ const CamionesSchema = new Schema({
         type:String,
         require:true
     },
-    Anio:{
+    Año:{
         type:Number,
         require:true,
     }, 
     Placa:{
+        type:String,
+        require:true
+    }, 
+    Consecutivo:{
         type:String,
         require:true
     }

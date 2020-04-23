@@ -5,7 +5,6 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-//const pdfmake= require('./pdfmake');
 
 //Inicializaciones
 const app = express();
@@ -38,6 +37,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+
 // Global Variables
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
@@ -46,10 +46,7 @@ app.use((req, res, next) => {
     res.locals.user = req.user || null;
     next();
 });
-/*
-var pdfMake = require('pdfmake/build/pdfmake.js');
-var pdfFonts = require('pdfmake/build/vfs_fonts.js');
-pdfMake.vfs = pdfFonts.pdfMake.vfs;*/
+
 
 //Rutas
 app.use(require('./routes/index'));
@@ -64,8 +61,6 @@ app.use(require('./routes/consecutivos'));
 app.use(require('./routes/parametrosGenerales'));
 app.use(require('./routes/bodegas'));
 app.use(require('./routes/persona'));
-app.use(require('./routes/tipoMateriaPrima'));
-app.use(require('./routes/pdf'));
 
 //Archivos publicos
 app.use(express.static(path.join(__dirname, 'public')))

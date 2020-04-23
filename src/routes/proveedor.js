@@ -3,29 +3,27 @@ const {
 } = require('express');
 const router = Router();
 
-const Producto = require('../models/Producto');
+const Proveedor = require('../models/Proveedor');
 const {
     isAuthenticated
 } = require('../helpers/auth');
 
-router.get('/productos', isAuthenticated, async (req, res) => {
-    const productos = await Producto.find().sort([
+router.get('/proveedor', isAuthenticated, async (req, res) => {
+    const proveedor = await Proveedor.find().sort([
         ['updatedAt', 'descending']
     ]);
 
-    res.render('productos/new-producto', {
-        productos   
+    res.render('proveedor/new-proveedor', {
+        proveedor   
     });
 });
 
-router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
+router.post('/proveedor/new-proveedor', isAuthenticated, async (req, res) => {
     const {
-        //CodigoMateriaPrima,
-        Descripcion,
-        PuntosReOrden,
-        //UnidadDeMedida
+        CodigoProveedor,
+        
     } = req.body;
-    const CodigoMateriaPrima= req.body.selectCMT;
+    const CodigoProveedor= req.body.selectCMT;
     const UnidadDeMedida= req.body.selectUM;
     const CodigoProducto = 1;
     const errors = [];

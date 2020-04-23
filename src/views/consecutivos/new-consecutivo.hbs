@@ -3,16 +3,33 @@
         <div class="row">
             <div class="col-10">
                 <h2 class="text">Consecutivos</h2>
-
                 <form action="/consecutivos/new-consecutivo" method="POST" class="needs-validation" novalidate>
-                    
+                    <div class="form-row" style="margin-top: 5%;">
+                        <div class="col-md-4 mb-3">
+                            <label for="Prefijo">Prefijo</label>
+                            <input name="Prefijo" type="text" class="form-control" id="Prefijo" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="ValorConsecutivo">Valor Consecutivo</label>
+                            <input name="ValorConsecutivo" type="number" class="form-control" id="ValorConsecutivo"
+                                required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Descripcion">Descripcion</label>
+                            <div class="input-group">
+                                <input name="Descripcion" type="text" class="form-control" id="Descripcion"
+                                    aria-describedby="inputGroupPrepend" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Agregar</button>
+
                     <table class="table" style="margin-top: 10%;">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Prefijo</th>
                                 <th scope="col">Descripcion</th>
                                 <th scope="col">Valor Consecutivo</th>
-                                <th scope="col">Cantidad Actual</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -21,7 +38,8 @@
                                 <td>{{this.Prefijo}}</td>
                                 <td>{{this.Descripcion}}</td>
                                 <td>{{this.ValorConsecutivo}}</td>
-                                <td>{{this.CantidadActual}}</td>
+                                <td><button class="btn btn-warning" type="submit">Modificar</button></td>
+                                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
                             </tr>
                             {{else}}
                         </tbody>

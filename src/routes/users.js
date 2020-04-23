@@ -25,7 +25,7 @@ router.post('/users/signin', passport.authenticate("local", {
     failureFlash: true
 }));
 
-router.get('/users/signup',isAuthenticated , (req, res) => {
+router.get('/users/signup',isAuthenticated, (req, res) => {
     res.render('users/signup')
 });
 
@@ -64,9 +64,10 @@ router.put('/users/changePassword/:id', isAuthenticated, async (req, res) => {
     req.flash("success_msg", "Ha cambiado su contraseña");
     res.redirect("/users/signin");
   }
+  
 });
 
-router.post('/users/signup',isAuthenticated , async (req, res) => {
+router.post('/users/signup', isAuthenticated, async (req, res) => {
     let errors = [];
   const { name, email, password, confirm_password } = req.body;
   if (password != confirm_password) {

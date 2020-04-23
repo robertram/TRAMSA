@@ -52,27 +52,27 @@ img {
   background-color: lightblue;
 }
 
+/*Rodri*/
+
+/*Kat*/
 * {
   font-family: 'Mukta Vaani', sans-serif;
 }
 
-
-/*
 a,
 a:hover,
 a:focus {
-  color: white;
+  color: inherit;
   text-decoration: none;
   transition: all 0.3s;
-}*/
-
-.btn-edit{
-  text-decoration: none;
-  color: white;
 }
-.btn-edit:hover{
-  color: white;
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
   text-decoration: none;
+  transition: all 0.3s;
 }
 
 body {
@@ -84,13 +84,12 @@ body {
 }
 
 .sidebar {
-  background-color: #E9E2EF;
+  background-color: #F6F7F8;
   height: 150%;
 }
 
 #navTramsa {
-  background: rgb(2, 0, 36);
-  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(173, 178, 240, 1) 0%, rgba(171, 122, 190, 1) 100%);
+ background-color: #5C93BE;
 }
 
 .bg-purpleBar {
@@ -119,7 +118,7 @@ body {
 .nav-link:hover,
 .nav-link:hover,
 .nav-link.active .text {
-  color: #5C426D;
+  color: #2A3F4F;
 }
 
 .nav-link .text {
@@ -189,9 +188,6 @@ table {
   Width: 100%;
   Overflow-x: auto;
 }
-
-
-
 
 
 @media (min-width: 992px) {

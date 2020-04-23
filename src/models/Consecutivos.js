@@ -5,18 +5,20 @@ const ConsecutivosSchema = new Schema({
         type:String,
         require:true
     },
-    Descripcion:{
-        type:String,
-        require:true
-    }, 
     ValorConsecutivo:{
         type:Number,
         require:true,
     }, 
-    CantidadActual:{
-        type:Number,
-        require:true,
+    Descripcion:{
+        type:String,
+        require:true
     }
-}) 
+},{timestamps:true}) 
+
+const consecutivo={
+    Prejio: "PRO", 
+    Descripcion: "Productos", 
+    Valor: 50
+}
 
 module.exports = model('Consecutivos',ConsecutivosSchema)
