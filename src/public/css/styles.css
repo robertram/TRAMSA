@@ -32,13 +32,16 @@ body {
 
 #navTramsa
 {
-  background: rgb(2,0,36);
+  /*background: rgb(2,0,36);
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(173,178,240,1) 0%, rgba(171,122,190,1) 100%);
+  */
+  background-color: #5C93BE;
 }
 
 .bg-purpleBar
 { 
-  background-color: #EAE3F0;
+  /*background-color: #EAE3F0;*/
+  background-color: #000;
 }
 
 .bg-barSelect, body, .nav-link.active, .nav-link:hover 
