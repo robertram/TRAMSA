@@ -84,13 +84,12 @@ body {
 }
 
 .sidebar {
-  background-color: #E9E2EF;
+  background-color: #F6F7F8;
   height: 150%;
 }
 
 #navTramsa {
-  background: rgb(2, 0, 36);
-  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(173, 178, 240, 1) 0%, rgba(171, 122, 190, 1) 100%);
+ background-color: #5C93BE;
 }
 
 .bg-purpleBar {
@@ -119,7 +118,7 @@ body {
 .nav-link:hover,
 .nav-link:hover,
 .nav-link.active .text {
-  color: #5C426D;
+  color: #2A3F4F;
 }
 
 .nav-link .text {
