@@ -60,6 +60,7 @@
             <!--Falta Codigo Materia Prima-->
           </div>
           <button class="btn btn-primary" type="submit">Agregar</button>
+          <button class="btn btn-danger button-form" onclick='generarPDF()'>Generar Reporte</button>
 
         </form>
         
@@ -67,6 +68,10 @@
           function deleteProducto(){
             document.getElementById("form-delete").submit();
             //alert("Hola muindo");
+          }
+
+          function generarPDF(){
+            alert('PDF generado');
           }
         </script>
 

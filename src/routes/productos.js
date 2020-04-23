@@ -163,12 +163,15 @@ router.delete('/productos/delete/:id', async (req, res) => {
 });
 
 // with express, in some route
-router.get('/pdf',  async (req, res, next) =>{
-    const cantidadProductos = await Producto.find();
-    var pdf = require('./pdfkit').create(cantidadProductos);
+router.get('/inventarioProductos',  async (req, res, next) =>{
+    const productos = await Producto.findById('5ea20c72d2ec1816cce680a6');
+    //console.log('productos ', productos)
+    var pdf = require('./pdfkit').create(productos);
     pdf.pipe(res);
     pdf.end();
 });
+
+//Otro de Precios productos
 
 
 

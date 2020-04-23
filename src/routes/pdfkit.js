@@ -14,8 +14,8 @@ module.exports = {
             CodigoProducto
         }= data2;
         
-        console.log("Datos Productos ",data2);
-        //console.log("CodigoProducto ", CodigoProducto);
+        //console.log("Datos Productos ",data2);
+        console.log("CodigoProducto ", CodigoProducto);
         // create a PDF from PDFKit, and a table from PDFTable
         var pdf = new PdfDocument({
                 autoFirstPage: false
@@ -75,7 +75,7 @@ module.exports = {
  
         // draw content, by passing data to the addBody method
         table.addBody([
-            {CodigoProducto: {data2}, quantity: 1, price: 20.10, total: 20.10},
+            {CodigoProducto: CodigoProducto, quantity: 1, price: 20.10, total: 20.10},
             {CodigoProducto: 'Product 2', quantity: 4, price: 4.00, total: 16.00},
             {CodigoProducto: 'Product 3', quantity: 2, price: 17.85, total: 35.70}
         ]);
