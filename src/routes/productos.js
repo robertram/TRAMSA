@@ -162,6 +162,14 @@ router.delete('/productos/delete/:id', async (req, res) => {
     res.redirect("/productos");
 });
 
+// with express, in some route
+router.get('/pdf',  async (req, res, next) =>{
+    const cantidadProductos = await Producto.find();
+    var pdf = require('./pdfkit').create(cantidadProductos);
+    pdf.pipe(res);
+    pdf.end();
+});
+
 
 
 
