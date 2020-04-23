@@ -3,6 +3,7 @@ const {
 } = require('express');
 const router = Router();
 const passport = require('passport');
+const bcryptjs = require('bcryptjs');
 
 // Models
 const User = require('../models/User');
@@ -36,8 +37,9 @@ router.put('/users/changePassword/:id', isAuthenticated, async (req, res) => {
     password,
     confirmedPassword
   } = req.body;
-  
-  const currentPass = req.user.password;
+  var currentPass = req.user.password;
+  console.log(currentPass);
+  currentPass = bcryptjs.getSalt(currentPass);
   console.log(currentPass);
   console.log(oldPassword);
   if(!password || !oldPassword || !confirmedPassword){

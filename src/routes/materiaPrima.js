@@ -4,6 +4,8 @@ const {
 const router = Router();
 
 const MateriaPrima = require('../models/MateriaPrima');
+const Consecutivo = require('../models/Consecutivos');
+
 const {
     isAuthenticated
 } = require('../helpers/auth');
@@ -23,8 +25,7 @@ router.post('/materiaPrima/new-materiaPrima', isAuthenticated, async (req, res) 
         Nombre,
         CantidadExistente,
         UnidadDeMedida,
-        Consecutivo
-    } = req.body;
+        } = req.body;
     
     const errors = [];
     //Chequeo si está vacío el textbox
@@ -55,12 +56,10 @@ router.post('/materiaPrima/new-materiaPrima', isAuthenticated, async (req, res) 
             CodigoMateriaPrima,
             Nombre,
             CantidadExistente,
-            UnidadDeMedida,
-            Consecutivo
+            UnidadDeMedida
         });
     } else {
         const cantidadMateriaPrima = await MateriaPrima.find().countDocuments();
-        console.log(cantidadMateriaPrima);
 
         const newMateriaPrima = new MateriaPrima({
             CodigoMateriaPrima,
@@ -68,13 +67,96 @@ router.post('/materiaPrima/new-materiaPrima', isAuthenticated, async (req, res) 
             CantidadExistente,
             UnidadDeMedida
         });
+
+        await Consecutivo.findOne({"Prefijo":"MP"}, (err,data)=>{
+            if(err || !data){
+                console.log(err);
+                return next(err);
+            }else{
+                var a = data.ValorConsecutivo;
+                a=a+1;
+                //Consecutivo.findOneAndUpdate({"Prefijo":"PR"}, {"ValorConsecutivo":a})
+                Consecutivo.updateOne({Prefijo:"MP"}, {$set: {ValorConsecutivo:a}}, (err, res)=>{
+                    if(err){
+                        console.log(err)
+                        throw err;
+                    }else{
+                        newMateriaPrima.CodigoMateriaPrima = a;
+                        newMateriaPrima.save();
+                    }
+                })
+            }
+        });
+
+        await Consecutivo.findOne({"Prefijo":"MP"}, (err,data)=>{
+            if(err || !data){
+                console.log(err);
+                return next(err);
+            }else{
+                var cant = cantidadMateriaPrima+1;
+                Consecutivo.updateOne({Prefijo:"MP"}, {$set: {CantidadActual:cant}}, (err, res)=>{
+                    if(err){
+                        console.log(err)
+                        throw err;
+                    }
+                })
+            }
+        });
         //newMateriaPrima.user = req.user.id;
-        newMateriaPrima.CodigoMateriaPrima = cantidadMateriaPrima+1;
-        newMateriaPrima.Consecutivo = cantidadMateriaPrima+1;
-        await newMateriaPrima.save();
+        //newMateriaPrima.CodigoMateriaPrima = cantidadMateriaPrima+1;
+        //newMateriaPrima.Consecutivo = cantidadMateriaPrima+1;
+        //await newMateriaPrima.save();
         //req.flash("success_msg", "MateriaPrima Añadido");
+        req.flash("success_msg", "Materia Prima Añadida");
         res.redirect("/materiaPrima");
     }
+});
+
+router.get('/materiaPrima/edit/:id', async (req, res) => {
+    const materiaPrima = await MateriaPrima.findById(req.params.id);
+
+    res.render("materiaPrima/edit-materiaPrima", {
+        materiaPrima
+    });
+});
+
+router.put('/materiaPrima/edit-materiaPrima/:id', async (req, res) => {
+    const {
+        //CodigoMateriaPrima,
+        Nombre,
+        CantidadExistente
+        //UnidadDeMedida
+    } = req.body;
+    const UnidadDeMedida= req.body.selectUM;
+    await MateriaPrima.findByIdAndUpdate(req.params.id, {
+        Nombre,
+        CantidadExistente,
+        UnidadDeMedida
+    });
+    req.flash("success_msg", "Materia Prima Editada Exitosamente");
+    res.redirect("/materiaPrima");
+});
+
+router.delete('/materiaPrima/delete/:id', async (req, res) => {
+    await MateriaPrima.findByIdAndDelete(req.params.id);
+    const cantidadMateriaPrima = await MateriaPrima.find().countDocuments();
+    console.log("cantidad "+cantidadMateriaPrima);
+    await Consecutivo.findOne({"Prefijo":"MP"}, (err,data)=>{
+        if(err || !data){
+            console.log(err);
+            return next(err);
+        }else{
+            var cant = cantidadProductos;
+            Consecutivo.updateOne({Prefijo:"MP"}, {$set: {CantidadActual:cant}}, (err, res)=>{
+                if(err){
+                    console.log(err)
+                    throw err;
+                }
+            })
+        }
+    });
+    req.flash("success_msg", "Materia Prima Eliminada Exitosamente");
+    res.redirect("/materiaPrima");
 });
 
 module.exports = router;

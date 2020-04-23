@@ -45,9 +45,14 @@
                 <td> {{this.Nombre}}</td>
                 <td> {{this.CantidadExistente}}</td>
                 <td> {{this.UnidadDeMedida}}</td>
-                <td><button class="btn btn-warning" type="submit">Modificar</button></td>
-                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
+                <td class=" btn btn-primary" type="submit"><a class="btn-edit"
+                    href="/materiaPrima/edit/{{_id}}">Modificar</a></td>
+                <td class="btn btn-primary button-form"><a onclick='deleteMateriaPrima()'>Eliminar</a></td>
               </tr>
+              <form action="/materiaPrima/delete/{{_id}}?_method=DELETE" method="POST"
+                enctype="application/x-www-form-urlencoded" id="eliminar">
+              </form>
+
               {{else}}
             </tbody>
           </table>
@@ -56,12 +61,18 @@
               <div class="card-body">
                 <h1>Hola {{user.name}}</h1>
                 <p clsss="lead">Aún no hay materia prima registrados</p>
-                <a  class="btn btn-success btn-block">Registra Una!</a>
+                <a class="btn btn-success btn-block">Registra Una!</a>
               </div>
             </div>
             {{/each}}
           </div>
         </form>
+        <script>
+            function deleteMateriaPrima() {
+              console.log(document.getElementById("eliminar"));
+              console.log('Aca');
+            }
+          </script>
         <script>
           // Example starter JavaScript for disabling form submissions if there are invalid fields
           (function () {
