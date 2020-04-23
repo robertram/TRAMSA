@@ -16,6 +16,10 @@ const MateriaPrimaSchema = new Schema({
     UnidadDeMedida:{
         type:Array,
         require:true
+    },
+    ValorConsecutivo:{
+        type:Number,
+        require:true
     }
 },{timestamps:true})
 
