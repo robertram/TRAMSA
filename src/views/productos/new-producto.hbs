@@ -80,12 +80,10 @@
               <td>{{ this.PuntosReOrden }}</td>
               <td>{{ this.UnidadDeMedida }}</td>
               <td>{{ this.CodigoMateriaPrima }}</td>
-              <td class="btn btn-warning button-form" type="submit"><a href="/productos/edit/{{_id}}">Modificar</a></td>
+              <td><button class="btn btn-warning" type="submit"><a href="/productos/edit/{{_id}}">Modificar</a></button></td>
               <form action="/productos/delete/{{_id}}?_method=DELETE" method="POST"
                 enctype="application/x-www-form-urlencoded">
-                <td class="btn btn-danger button-form" type="submit">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <button type="submit" class=" btn-danger button-form">Delete</button>
+                <td><button class="btn btn-danger button-form" type="submit">Eliminar</button></td>
                 </td>
               </form>
             </tr>
