@@ -82,5 +82,57 @@ module.exports = {
  
  
         return pdf;
+    },
+
+    mostrarInventario: function(datos){
+        
+        var pdf = new PdfDocument({autoFirstPage:false});
+        table = new PdfTable(pdf, {bottomMargin: 30});
+        table.addPlugin(new (require('voilab-pdf-table/plugins/fitcolumn'))({
+                column: 'CodigoProducto'
+        })).setColumnsDefaults({
+                headerBorder: 'B',
+                align: 'right'
+            })
+            .addColumns([
+                {
+                    id: 'CodigoProducto',
+                    header: 'Codigo Producto',
+                    align: 'left'
+                },
+                {
+                    id: 'Nombre',
+                    header: 'Nombre',
+                    align:'left',
+                    width: 90
+                },
+                {
+                    id: 'UnidadMedida',
+                    header: 'Unidad de Medida',
+                    align:'left',
+                    width: 85
+                },
+                {
+                    id: 'Cantidad',
+                    header: 'Cantidad',
+                    align:'left',
+                    width: 70
+                },
+                {
+                    id: 'PuntoReorden',
+                    header: 'Punto de Reorden',
+                    align:'left',
+                    width: 70
+                }
+            ])
+            .onPageAdded(function (tb) {
+                tb.addHeader();
+            });
+        pdf.addPage();
+        for(var i = 0; i < datos.length; i++){
+            table.addBody([
+                {CodigoProducto:datos[i].CodigoProducto, Nombre:datos[i].Descripcion, UnidadMedida:datos[i].UnidadDeMedida,Cantidad:'',PuntoReorden:datos[i].PuntosReOrden}]);
+        }
+        return pdf;
     }
 };

@@ -171,6 +171,13 @@ router.get('/inventarioProductos',  async (req, res, next) =>{
     pdf.end();
 });
 
+router.get('/inventario', async (req,res,next)=>{
+    const productos = await Producto.find();
+    var pdf = require('./pdfkit').mostrarInventario(productos);
+    pdf.pipe(res);
+    pdf.end();
+});
+
 //Otro de Precios productos
 
 
