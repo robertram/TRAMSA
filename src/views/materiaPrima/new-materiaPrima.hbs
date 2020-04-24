@@ -29,6 +29,23 @@
           </div>
           <button class="btn btn-primary" type="submit">Agregar</button>
 
+          <script>
+            
+          
+
+
+          function deleteMateriaPrima(){
+            console.log('asdasd', document.getElementById("form-delete"));
+
+            document.getElementById("form-delete").submit();
+            console.log('asd');
+          }
+
+          function generarPDF(){
+            alert('PDF generado');
+          }
+        </script>
+
           <table class="table" style="margin-top: 10%;">
             <thead class="thead-light">
               <tr>
@@ -50,8 +67,9 @@
                 <td class="btn btn-primary button-form"><a onclick='deleteMateriaPrima()'>Eliminar</a></td>
               </tr>
               <form action="/materiaPrima/delete/{{_id}}?_method=DELETE" method="POST"
-                enctype="application/x-www-form-urlencoded" id="eliminar">
+                enctype="application/x-www-form-urlencoded" id="form-delete">
               </form>
+              
 
               {{else}}
             </tbody>
