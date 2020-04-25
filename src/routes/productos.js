@@ -11,7 +11,7 @@ const {
     isAuthenticated
 } = require('../helpers/auth');
 
-router.get('/productos', async (req, res) => {
+router.get('/productos', isAuthenticated, async (req, res) => {
     const productos = await Producto.find().sort([
         ['updatedAt', 'descending']
     ]);
@@ -21,7 +21,7 @@ router.get('/productos', async (req, res) => {
     });
 });
 
-router.post('/productos/new-producto', async (req, res) => {
+router.post('/productos/new-producto', isAuthenticated, async (req, res) => {
     const {
         //CodigoMateriaPrima,
         Descripcion,
@@ -57,16 +57,12 @@ router.post('/productos/new-producto', async (req, res) => {
     } else {
         const cantidadProductos = await Producto.find().countDocuments();
         
-
         const newProducto = new Producto({
             CodigoMateriaPrima,
             Descripcion,
             PuntosReOrden,
             UnidadDeMedida
         });
-        
-        /*newProducto.CodigoProducto = cantidadProductos + 1;
-        await newProducto.save();*/
 
         await Consecutivo.findOne({"Prefijo":"PR"}, (err,data)=>{
             if(err || !data){
@@ -114,7 +110,7 @@ router.post('/productos/new-producto', async (req, res) => {
 });
 
 
-router.get('/productos/edit/:id', async (req, res) => {
+router.get('/productos/edit/:id', isAuthenticated, async (req, res) => {
     const producto = await Producto.findById(req.params.id);
 
     res.render("productos/edit-producto", {
@@ -122,7 +118,7 @@ router.get('/productos/edit/:id', async (req, res) => {
     });
 });
 
-router.put('/productos/edit-producto/:id', async (req, res) => {
+router.put('/productos/edit-producto/:id', isAuthenticated, async (req, res) => {
     const {
         //CodigoMateriaPrima,
         Descripcion,
@@ -141,7 +137,7 @@ router.put('/productos/edit-producto/:id', async (req, res) => {
     res.redirect("/productos");
 });
 
-router.delete('/productos/delete/:id', async (req, res) => {
+router.delete('/productos/delete/:id', isAuthenticated, async (req, res) => {
     await Producto.findByIdAndDelete(req.params.id);
     const cantidadProductos = await Producto.find().countDocuments();
     console.log("cantidad "+cantidadProductos);
@@ -163,8 +159,7 @@ router.delete('/productos/delete/:id', async (req, res) => {
     res.redirect("/productos");
 });
 
-// with express, in some route
-router.get('/inventarioProductos',  async (req, res, next) =>{
+router.get('/inventarioProductos', isAuthenticated, async (req, res, next) =>{
     const productos = await Producto.findById('5ea20c72d2ec1816cce680a6');
     //console.log('productos ', productos)
     var pdf = require('./pdfkit').create(productos);
@@ -172,16 +167,11 @@ router.get('/inventarioProductos',  async (req, res, next) =>{
     pdf.end();
 });
 
-router.get('/inventario', async (req,res,next)=>{
+router.get('/inventario', isAuthenticated, async (req,res,next)=>{
     const productos = await Producto.find();
     var pdf = require('./pdfkit').mostrarInventario(productos);
     pdf.pipe(res);
     pdf.end();
 });
-
-//Otro de Precios productos
-
-
-
 
 module.exports = router;

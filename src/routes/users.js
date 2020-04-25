@@ -102,7 +102,7 @@ router.post('/users/signup',isAuthenticated , async (req, res) => {
   }
 });
 
-router.get('/users/logout', (req, res) => {
+router.get('/users/logout',isAuthenticated,  (req, res) => {
     req.logout();
     req.flash("success_msg", "Sesión Cerrada");
     res.redirect("/");

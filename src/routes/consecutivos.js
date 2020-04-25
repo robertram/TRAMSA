@@ -8,7 +8,7 @@ const {
     isAuthenticated
 } = require('../helpers/auth');
 
-router.get('/consecutivos', async(req, res) => {
+router.get('/consecutivos', isAuthenticated, async(req, res) => {
     const consecutivos = await Consecutivo.find().sort([
         ['updatedAt', 'descending']
     ]);
