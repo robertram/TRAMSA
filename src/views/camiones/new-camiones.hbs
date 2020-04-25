@@ -42,7 +42,6 @@
                 <script>
                     function deleteCamion() {
                         document.getElementById("form-delete").submit();
-                        //alert("Hola muindo");
                     }
                 </script>
 
@@ -66,17 +65,12 @@
                             <td>{{ this.Marca}}</td>
                             <td>{{ this.Anio}}</td>
                             <td>{{ this.Placa}}</td>
-                            <td class=" btn btn-warning button-form" type="submit"><a class="btn-edit"
-                                    href="/camiones/edit/{{_id}}">Modificar</a></td>
-                            <td class="btn btn-danger button-form"><a onclick='deleteCamion()'>Eliminar</a></td>
+                            <td type="submit"><button class=" btn btn-warning" type="submit"><a class="undecorate" href="/camiones/edit/{{_id}}">Modificar</a></button></td>
+                            <td><button class="btn btn-danger button-form" type="submit" onclick='deleteCamion()'>Eliminar</button></td>
 
-                            <form action="/camiones/delete/{{_id}}?_method=DELETE" method="POST"
-                                enctype="application/x-www-form-urlencoded" id="form-delete">
-                                <!--<td class=" btn btn-danger button-form" type="submit">
-                  <input type="hidden" name="_method" value="Delete">
-                  <button type="submit" class="btn-delete btn btn-danger button-form">Delete</button>
-                </td>-->
-                            </form>
+                        <form action="/camiones/delete/{{_id}}?_method=DELETE" method="POST"
+                            enctype="application/x-www-form-urlencoded" id="form-delete">
+                        </form>
 
                         </tr>
                         {{else}}

@@ -92,7 +92,7 @@
               <td>{{ this.PuntosReOrden }}</td>
               <td>{{ this.UnidadDeMedida }}</td>
               <td>{{ this.CodigoMateriaPrima }}</td>
-              <td type="submit"><button class="btn btn-warning" type="submit"><a href="/productos/edit/{{_id}}">Modificar</a></button></td>
+              <td type="submit"><button class="btn btn-warning" type="submit"><a class="undecorate" href="/productos/edit/{{_id}}">Modificar</a></button></td>
               <td><button class="btn btn-danger button-form" type="submit" onclick='deleteProducto()'>Eliminar</button></td>
 
               <form action="/productos/delete/{{_id}}?_method=DELETE" method="POST"

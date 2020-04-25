@@ -194,6 +194,15 @@ table {
   Overflow-x: auto;
 }
 
+.undecorate{
+  text-decoration: none;
+  color: white;
+}
+
+.undecorate:hover{
+  text-decoration: none;
+  color: white;
+}
 
 
 

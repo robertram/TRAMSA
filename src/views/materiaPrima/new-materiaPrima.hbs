@@ -35,7 +35,7 @@
 
 
           function deleteMateriaPrima(){
-            console.log('asdasd', document.getElementById("form-delete"));
+            //console.log('asdasd', document.getElementById("form-delete"));
 
             document.getElementById("form-delete").submit();
             console.log('asd');
@@ -62,15 +62,14 @@
                 <td> {{this.Nombre}}</td>
                 <td> {{this.CantidadExistente}}</td>
                 <td> {{this.UnidadDeMedida}}</td>
-                <td class=" btn btn-primary" type="submit"><a class="btn-edit"
-                    href="/materiaPrima/edit/{{_id}}">Modificar</a></td>
-                <td class="btn btn-primary button-form"><a onclick='deleteMateriaPrima()'>Eliminar</a></td>
-              </tr>
+              <td type="submit"><button class=" btn btn-warning" type="submit"><a class="undecorate" href="/materiaPrima/edit/{{_id}}">Modificar</a></button></td>
+              <td><button class="btn btn-danger button-form" type="submit" onclick='deleteMateriaPrima()'>Eliminar</button></td>
+
               <form action="/materiaPrima/delete/{{_id}}?_method=DELETE" method="POST"
                 enctype="application/x-www-form-urlencoded" id="form-delete">
               </form>
-              
 
+              
               {{else}}
             </tbody>
           </table>
