@@ -146,7 +146,7 @@ router.delete('/materiaPrima/delete/:id', async (req, res) => {
             console.log(err);
             return next(err);
         }else{
-            var cant = cantidadProductos;
+            var cant = cantidadMateriaPrima;
             Consecutivo.updateOne({Prefijo:"MP"}, {$set: {CantidadActual:cant}}, (err, res)=>{
                 if(err){
                     console.log(err)

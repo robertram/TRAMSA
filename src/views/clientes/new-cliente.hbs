@@ -70,7 +70,7 @@
                     <button class="btn btn-primary" type="submit">Agregar</button>
 
                     <script>
-                        function deleteCliente() {
+                        function eliminarCliente() {
                             console.log('1');
                             document.getElementById("form-delete").submit();
                             console.log('2');
@@ -108,7 +108,7 @@
                                 <td type="submit"><button class="btn btn-warning" type="submit"><a
                                             href="/clientes/edit/{{_id}}">Modificar</a></button></td>
                                 <td><button class="btn btn-danger button-form" type="submit"
-                                        onclick='deleteCliente()'>Eliminar</button></td>
+                                        onclick='eliminarCliente()'>Eliminar</button></td>
                                 <form action="/clientes/delete/{{_id}}?_method=DELETE" method="POST"
                                     enctype="application/x-www-form-urlencoded" id="form-delete">
                                 </form>
