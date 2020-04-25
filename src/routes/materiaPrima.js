@@ -138,6 +138,7 @@ router.put('/materiaPrima/edit-materiaPrima/:id', async (req, res) => {
 });
 
 router.delete('/materiaPrima/delete/:id', async (req, res) => {
+    console.log('entra')
     await MateriaPrima.findByIdAndDelete(req.params.id);
     const cantidadMateriaPrima = await MateriaPrima.find().countDocuments();
     console.log("cantidad "+cantidadMateriaPrima);
@@ -146,7 +147,7 @@ router.delete('/materiaPrima/delete/:id', async (req, res) => {
             console.log(err);
             return next(err);
         }else{
-            var cant = cantidadProductos;
+            var cant = cantidadMateriaPrima;
             Consecutivo.updateOne({Prefijo:"MP"}, {$set: {CantidadActual:cant}}, (err, res)=>{
                 if(err){
                     console.log(err)
