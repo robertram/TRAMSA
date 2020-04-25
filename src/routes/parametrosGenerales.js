@@ -84,5 +84,30 @@ router.post('/parametrosGenerales/new-parametroGeneral', isAuthenticated, async 
     }
 });
 
+router.get('/parametros/edit/:id', async (req, res) => {
+    const parametro = await Parametro.findById(req.params.id);
+
+    res.render("parametrosGenerales/edit-parametrosGenerales", {
+        parametro
+    });
+});
+
+router.put('/parametrosGenerales/edit-parametrosGenerales/:id', async (req, res) => {
+    const {
+        NombreCompania, Telefono, CedulaJuridica, MensajeSaludo, DireccionEstablecimiento
+    } = req.body;
+    await Parametro.findByIdAndUpdate(req.params.id, {
+        NombreCompania, Telefono, CedulaJuridica, MensajeSaludo, DireccionEstablecimiento
+    });
+    req.flash("success_msg", "Parametro General Editado Exitosamente");
+    res.redirect("/parametros");
+});
+
+router.delete('/parametros/delete/:id', async (req, res) => {
+    await Parametro.findByIdAndDelete(req.params.id);
+    const cantidadParametros = await Parametro.find().countDocuments();
+    req.flash("success_msg", "Parametro General Eliminado Exitosamente");
+    res.redirect("/parametros");
+});
 
 module.exports = router;
