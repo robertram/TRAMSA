@@ -138,6 +138,7 @@ router.put('/materiaPrima/edit-materiaPrima/:id', async (req, res) => {
 });
 
 router.delete('/materiaPrima/delete/:id', async (req, res) => {
+    console.log('entra')
     await MateriaPrima.findByIdAndDelete(req.params.id);
     const cantidadMateriaPrima = await MateriaPrima.find().countDocuments();
     console.log("cantidad "+cantidadMateriaPrima);

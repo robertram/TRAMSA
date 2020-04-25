@@ -30,15 +30,8 @@
           <button class="btn btn-primary" type="submit">Agregar</button>
 
           <script>
-            
-          
-
-
-          function deleteMateriaPrima(){
-            //console.log('asdasd', document.getElementById("form-delete"));
-
+          function deleteMT(){
             document.getElementById("form-delete").submit();
-            console.log('asd');
           }
 
           function generarPDF(){
@@ -63,13 +56,12 @@
                 <td> {{this.CantidadExistente}}</td>
                 <td> {{this.UnidadDeMedida}}</td>
               <td type="submit"><button class=" btn btn-warning" type="submit"><a class="undecorate" href="/materiaPrima/edit/{{_id}}">Modificar</a></button></td>
-              <td><button class="btn btn-danger button-form" type="submit" onclick='deleteMateriaPrima()'>Eliminar</button></td>
+              <td><button class="btn btn-danger button-form" type="submit" onclick='deleteMT()'>Eliminar</button></td>
 
               <form action="/materiaPrima/delete/{{_id}}?_method=DELETE" method="POST"
                 enctype="application/x-www-form-urlencoded" id="form-delete">
               </form>
 
-              
               {{else}}
             </tbody>
           </table>
