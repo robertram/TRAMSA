@@ -29,11 +29,6 @@ router.post('/materiaPrima/new-materiaPrima', isAuthenticated, async (req, res) 
     
     const errors = [];
     //Chequeo si está vacío el textbox
-    if (!CodigoMateriaPrima) {
-        errors.push({
-            text: "Please Write a CodigoMateriaPrima."
-        });
-    }
     if (!Nombre) {
         errors.push({
             text: "Please Write a Nombre"
