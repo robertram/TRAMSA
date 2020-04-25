@@ -1,0 +1,103 @@
+<div class="containerInfo">
+  <div class="container" style="margin-top: 8%;">
+    <div class="row">
+      <div class="col-10">
+        <h2 class="text">Editar Clientes</h2>
+        <form action="/clientes/edit-cliente/{{cliente._id}}?_method=PUT" method="POST" novalidate>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom02">Codigo de Identificacion</label>
+              <input name="CodigoIdentificacion" type="number" class="form-control" id="validationCustom02"
+                value="{{cliente.CodigoIdentificacion}}" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="FechaIngreso">FechaIngreso</label>
+              <div class="input-group">
+                <input name="FechaIngreso" type="date" class="form-control" id="validationCustomUsername"
+                  aria-describedby="inputGroupPrepend" value="{{cliente.FechaIngreso}}" required>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="DocumentoDeIdentidad">Documento de Identidad</label>
+              <div class="input-group">
+                <input name="DocumentoDeIdentidad" type="text" class="form-control" id="validationCustomUsername"
+                  aria-describedby="inputGroupPrepend" value="{{cliente.DocumentoDeIdentidad}}" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom02">Primer Apellido</label>
+              <input name="PrimerApellido" type="text" class="form-control" id="validationCustom02"
+                value="{{cliente.PrimerApellido}}" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="SegundoApellido">Segundo Apellido</label>
+              <div class="input-group">
+                <input name="SegundoApellido" type="text" class="form-control" id="validationCustomUsername"
+                  aria-describedby="inputGroupPrepend" value="{{cliente.SegundoApellido}}" required>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="Nombre">Nombre</label>
+              <div class="input-group">
+                <input name="Nombre" type="text" class="form-control" id="validationCustomUsername"
+                  aria-describedby="inputGroupPrepend" value="{{cliente.Nombre}}" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom02">Estado</label>
+              <input name="Estado" type="text" class="form-control" id="validationCustom02"
+                value="{{cliente.Estado}}" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="Telefono">Telefono</label>
+              <div class="input-group">
+                <input name="Telefono" type="number" class="form-control" id="validationCustomUsername"
+                  aria-describedby="inputGroupPrepend" value="{{cliente.Telefono}}" required>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="CorreoElectronico">CorreoElectronico</label>
+              <div class="input-group">
+                <input name="CorreoElectronico" type="text" class="form-control" id="validationCustomUsername"
+                  aria-describedby="inputGroupPrepend" value="{{cliente.CorreoElectronico}}" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-row" style="margin-top: 5%;">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom02">Direccion</label>
+              <input name="Direccion" type="text" class="form-control" id="validationCustom02"
+                value="{{cliente.Direccion}}" required>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Editar</button>
+        </form>
+        <script>
+          // Example starter JavaScript for disabling form submissions if there are invalid fields
+          (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.getElementsByClassName('needs-validation');
+              // Loop over them and prevent submission
+              var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add('was-validated');
+                }, false);
+              });
+            }, false);
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

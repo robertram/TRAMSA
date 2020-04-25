@@ -46,10 +46,12 @@ router.put('/users/changePassword/:id', isAuthenticated, async (req, res) => {
     errores.push({text:"Por favor llene todos los campos"});
     console.log('1');
   }
+  /*
+  //Hay que desencriptar la contraseña de la base de datos para poder comparar de manera correcta
   if(oldPassword != currentPass){
     errores.push({text:"Su contraseña actual no es correcta"});
     console.log('2');
-  }
+  }*/
   if(password != confirmedPassword){
     errores.push({text: "Por favor revise que su nueva contraseña este bien escrita en ambos campos"});
     console.log('3');

@@ -10,7 +10,7 @@ const ClienteSchema = new Schema({
         require:true,
     },
     DocumentoDeIdentidad:{
-        type:Arrays,
+        type:String,
         require:true
     }, 
     PrimerApellido:{
@@ -29,8 +29,8 @@ const ClienteSchema = new Schema({
         type:String,
         require:true
     }, 
-    Telefonos:{
-        type:Arrays,
+    Telefono:{
+        type:Number,
         require:true
     }, 
     CorreoElectronico:{

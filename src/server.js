@@ -66,6 +66,7 @@ app.use(require('./routes/bodegas'));
 app.use(require('./routes/persona'));
 app.use(require('./routes/tipoMateriaPrima'));
 app.use(require('./routes/pdf'));
+app.use(require('./routes/clientes'));
 
 //Archivos publicos
 app.use(express.static(path.join(__dirname, 'public')))
