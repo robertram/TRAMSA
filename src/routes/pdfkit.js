@@ -1,6 +1,6 @@
 
 const fs= require('fs');
-var PdfTable = require('voilab-pdf-table'),
+var PdfTable = require('../voilab-pdf-table'),
     PdfDocument = require('pdfkit');
  
 module.exports = {
@@ -129,6 +129,11 @@ module.exports = {
                 tb.addHeader();
             });
         pdf.addPage();
+        
+        table.addBody([
+            {CodigoProducto:'Codigo Producto', Nombre:'Nombre', UnidadMedida:'Unidad de Medida',PuntoReorden:'Puntos de Reorden'}]);
+    
+
         for(var i = 0; i < datos.length; i++){
             table.addBody([
                 {CodigoProducto:datos[i].CodigoProducto, Nombre:datos[i].Descripcion, UnidadMedida:datos[i].UnidadDeMedida,Cantidad:'',PuntoReorden:datos[i].PuntosReOrden}]);

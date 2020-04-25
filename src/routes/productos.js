@@ -2,6 +2,7 @@ const {
     Router
 } = require('express');
 const router = Router();
+const pdf = require('html-pdf');
 
 const Producto = require('../models/Producto');
 const Consecutivo = require('../models/Consecutivos');

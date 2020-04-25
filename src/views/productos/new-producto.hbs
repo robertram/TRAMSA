@@ -74,7 +74,7 @@
           }
         </script>
 
-        <table class="table" style="margin-top: 10%;">
+        <table id="tabla-productos" class="table" style="margin-top: 10%;">
           <thead class="thead-light">
             <tr>
               <th scope="col">Codigo de Producto</th>
@@ -97,10 +97,6 @@
 
               <form action="/productos/delete/{{_id}}?_method=DELETE" method="POST"
                 enctype="application/x-www-form-urlencoded" id="form-delete">
-                <!--<td class=" btn btn-danger button-form" type="submit">
-                  <input type="hidden" name="_method" value="Delete">
-                  <button type="submit" class="btn-delete btn btn-danger button-form">Delete</button>
-                </td>-->
               </form>
             </tr>
             {{else}}

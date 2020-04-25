@@ -10,7 +10,7 @@ const {
     isAuthenticated
 } = require('../helpers/auth');
 
-router.get('/bodega', async (req, res) => {
+router.get('/bodegas', async (req, res) => {
     const bodega = await Bodega.find().sort([
         ['updatedAt', 'descending']
     ]);
