@@ -36,7 +36,7 @@
             <tr>
               <td>{{ this.CodigoTipoMateriaPrima }}</td>
               <td>{{ this.Descripcion }}</td>
-              <td type="submit"><button class="btn btn-warning" type="submit"><a href="/tipoMateriaPrima/edit/{{_id}}">Modificar</a></button></td>
+              <td type="submit"><button class="btn btn-warning" type="submit"><a class="undecorate" href="/tipoMateriaPrima/edit/{{_id}}">Modificar</a></button></td>
               <td><button class="btn btn-danger button-form" type="submit" onclick='deleteMateriaPrima()'>Eliminar</button></td>
 
               <form action="/tipoMateriaPrima/delete/{{_id}}?_method=DELETE" method="POST"
