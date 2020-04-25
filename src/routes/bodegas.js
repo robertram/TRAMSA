@@ -10,7 +10,7 @@ const {
     isAuthenticated
 } = require('../helpers/auth');
 
-router.get('/bodegas', async (req, res) => {
+router.get('/bodegas', isAuthenticated, async (req, res) => {
     const bodega = await Bodega.find().sort([
         ['updatedAt', 'descending']
     ]);
@@ -20,7 +20,7 @@ router.get('/bodegas', async (req, res) => {
     });
 });
 
-router.post('/bodega/new-bodega', async (req, res) => {
+router.post('/bodega/new-bodega', isAuthenticated, async (req, res) => {
     const {
         //CodigoBodega,
         Nombre,
@@ -146,7 +146,7 @@ router.post('/bodega/new-bodega', async (req, res) => {
         });*/
         //console.log("id producto "+Idproducto+" _id "+_id);
         req.flash("success_msg", "Bodega Añadida");
-        res.redirect("/bodega");
+        res.redirect("/bodegas");
     }
 });
 
@@ -179,7 +179,7 @@ router.put('/bodega/edit-bodega/:id', async (req, res) => {
         EspacioBodega
     });
     req.flash("success_msg", "Bodega Editada Exitosamente");
-    res.redirect("/bodega");
+    res.redirect("/bodegas");
 });
 
 router.delete('/bodega/delete/:id', async (req, res) => {
@@ -201,7 +201,7 @@ router.delete('/bodega/delete/:id', async (req, res) => {
         }
     });
     req.flash("success_msg", "Bodega Eliminada Exitosamente");
-    res.redirect("/bodega");
+    res.redirect("/bodegas");
 });
 
 

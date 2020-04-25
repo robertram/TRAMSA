@@ -131,7 +131,8 @@ module.exports = {
         pdf.addPage();
         
         table.addBody([
-            {CodigoProducto:'Codigo Producto', Nombre:'Nombre', UnidadMedida:'Unidad de Medida',PuntoReorden:'Puntos de Reorden'}]);
+            {CodigoProducto:'Codigo Producto', Nombre:'Nombre', UnidadMedida:'Unidad de Medida',PuntoReorden:'Puntos de Reorden'},
+            {CodigoProducto:'', Nombre:'', UnidadMedida:'',PuntoReorden:''}]);
     
 
         for(var i = 0; i < datos.length; i++){

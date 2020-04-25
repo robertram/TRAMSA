@@ -106,7 +106,7 @@
                                 <td>{{this.CorreoElectronico}}</td>
                                 <td>{{this.Direccion}}</td>
                                 <td type="submit"><button class="btn btn-warning" type="submit"><a
-                                            href="/clientes/edit/{{_id}}">Modificar</a></button></td>
+                                            class="undecorate" href="/clientes/edit/{{_id}}">Modificar</a></button></td>
                                 <td><button class="btn btn-danger button-form" type="submit"
                                         onclick='eliminarCliente()'>Eliminar</button></td>
                                 <form action="/clientes/delete/{{_id}}?_method=DELETE" method="POST"
